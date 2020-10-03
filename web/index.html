@@ -1,28 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-
-    body {
-        margin: 0;
-    }
-
-    canvas {
-        width: 100vw;
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: url(https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg) no-repeat center center ;
-    }
-
-
-
-
-
-
-
-
-</style>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;700&display=swap" rel="stylesheet"> 
+    <link href="./css/index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+</head>
 <meta charset="UTF-8">
 
 
@@ -30,107 +12,77 @@
 <body>
 
 
+
+
+    <div class="sidebar">
+        <div class="optionPane visible mainOptions" id="mainOptions">
+            <div class="option mainOption" id="optionSurface">
+                <div class="optionImage">
+                    <img src="./img/surface.svg">
+                    <p>Edit Surface</p>
+                </div>
+            </div>
+            <div class="option mainOption" id="optionSurface">
+                <div class="optionImage">
+                    <img src="./img/atmosphere.svg">
+                    <p>Edit Atmosphere</p>
+                </div>
+            </div>
+        </div>
+        <div class="optionPane surfaceOptions" id="surfaceOptions">
+            <p class="controlLabel">Terrain Color</p>
+            <div class="control colorControl">
+                <div class="colorLeft">
+                    <label for="planetColorR">R</label>
+                    <input class="planetColor" name="planetColorR" type="number" max=255 min=0 id="planetColorR" value=0><br>
+                    <label for="planetColorR">G</label>
+                    <input class="planetColor" name="planetColorG" type="number" max=255 min=0 id="planetColorG" value=0><br>
+                    <label for="planetColorR">B</label>
+                    <input class="planetColor" name="planetColorB" type="number" max=255 min=0 id="planetColorB" value=0><br>
+                </div>
+                <div class="colorRight">
+                    <div id="picker"></div>
+                </div>
+            </div>
+
+            <p class="controlLabel">Terrain Roughness</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetRoughness" name="planetRoughness" min=0 max=300 step=1> 
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="optionPane atmosphereOptions" id="atmosphereOptions">
+
+        </div>
+
+
+    </div>
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./lib/threejs/three.js"></script>
 
+    
 
-<script>
-    var camera, scene, renderer;
-    var geometry, material, mesh;
+    <script src="https://threejs.org/build/three.min.js"></script>
 
-    init();
-    animate();
+    <script src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://threejs.org/examples/js/postprocessing/MaskPass.js"></script>
+    <script src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://threejs.org/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://threejs.org/examples/js/shaders/FXAAShader.js"></script>
+    <script src="https://threejs.org/examples/js/shaders/ConvolutionShader.js"></script>
+    <script src="https://threejs.org/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://threejs.org/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
 
-    function init() {
-
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-        camera.position.z = 2;
-
-        scene = new THREE.Scene();
-
-        THREE.ImageUtils.crossOrigin = '';
-        var bmap = new THREE.TextureLoader().load( 'https://miro.medium.com/max/4092/1*-vO6vIHeE67CAm6Mk3AcSA.png' );
-        var cloudTexture = new THREE.TextureLoader().load("http://learningthreejs.com/data/2013-09-16-how-to-make-the-earth-in-webgl/demo/bower_components/threex.planets/images/earthcloudmaptrans.jpg");
-
-        console.log(bmap);
-
-
-        var planetGeometry = new THREE.SphereGeometry(1, 32 , 32);
-        var planetMaterial = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-            bumpMap: bmap,
-            bumpScale:  0.1
-        });
-
-        mesh = new THREE.Mesh(planetGeometry, planetMaterial);
-
-
-        var cloudGeometry   = new THREE.SphereGeometry(1.2, 32, 32)
-        var cloudMaterial  = new THREE.MeshPhongMaterial({
-            map     : new THREE.Texture(cloudTexture),
-            side        : THREE.DoubleSide,
-            opacity     : 0.8,
-            transparent : true,
-            depthWrite  : false,
-        });
-        var cloudMesh = new THREE.Mesh(geometry, material)
-        
-
-
-        var light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
-        light.position.set( 1, 1, 1 ); 			//default; light shining from top
-        light.castShadow = true;            // default false
-        scene.add( light );
-
-        //Set up shadow properties for the light
-        light.shadow.mapSize.width = 512;  // default
-        light.shadow.mapSize.height = 512; // default
-        light.shadow.camera.near = 0.5;    // default
-        light.shadow.camera.far = 500;     // default
-
-
-        scene.add(mesh);
-        scene.add(cloudMesh);
-
-        renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        renderer.shadowMapEnabled = true;
-        renderer.shadowMapType = THREE.PCFShadowMap;
-
-        document.body.appendChild(renderer.domElement);
-
-
-        const composer = new THREE.EffectComposer(renderer)
-        var bloomEffect = new BloomEffect();
-        const effectPass = new EffectPass(camera, bloomEffect);
-        effectPass.renderToScreen = true;
-
-        composer.addPass(effectPass);
-        composer.addPass(new RenderPass(scene, camera));
-        effectPass.renderToScreen = true;
-
-        
-        }
-
-        function animate() {
-
-            requestAnimationFrame(animate);
-
-            mesh.rotation.y += 0.0015;
-
-
-
-            renderer.render(scene, camera);
-
-        }
-
-
-
-
-
-
-</script>
+    <script src="./js/index.js"></script>
+    <script src="./js/ui.js"></script>
 
 
 </body>
