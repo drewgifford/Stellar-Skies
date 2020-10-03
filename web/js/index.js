@@ -1,5 +1,9 @@
 var camera, scene, renderer;
-var geometry, material, mesh, controls, composer, planetMaterial;
+var geometry, material, mesh, controls, composer, atmosphereMesh, bloomStrength, bloomPass;
+var surfaceSpeed = 0.0015;
+var atmosphereSpeed = 0.001;
+
+var atmosphereDepth = 0.05;
 
 
 $("window").resize(function(){
@@ -48,27 +52,42 @@ $("window").resize(function(){
             bumpMap: bmap,
             bumpScale:  0.1,
             displacementMap: bmap,
-            displacementScale: 0.4,
+            displacementScale: 0,
             specular : new  THREE.Color("grey"),
             shininess: 5
         });
+        planetMaterial.side = THREE.DoubleSide
+        planetMaterial.onBeforeCompile = function( shader ) {
+
+            shader.fragmentShader = shader.fragmentShader.replace(
+        
+                `gl_FragColor = vec4( outgoingLight, diffuseColor.a );`,
+        
+                `gl_FragColor = ( gl_FrontFacing ) ? vec4( outgoingLight, diffuseColor.a ) : vec4( diffuse, opacity );`
+        
+            );
+        };
 
         mesh = new THREE.Mesh(planetGeometry, planetMaterial);
 
 
-        var atmosphereGeometry = new THREE.SphereGeometry(1.05, 32, 32);
-        var atmosphereMaterial = new THREE.MeshStandardMaterial({
+        atmosphereGeometry = new THREE.SphereGeometry(1, 32, 32);
+        atmosphereMaterial = new THREE.MeshStandardMaterial({
             color: 0xffffff,
             transparent: true,
             map: cloudMap,
             opacity: 0.9,
-            blending: THREE.AdditiveBlending
+            //blending: THREE.AdditiveBlending
         });
+        
 
         var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.02 );
         scene.add( ambientLight );
 
         atmosphereMesh = new THREE.Mesh(atmosphereGeometry,atmosphereMaterial);
+        atmosphereMesh.scale.x = 1*(1+atmosphereDepth);
+        atmosphereMesh.scale.y = 1*(1+atmosphereDepth);
+        atmosphereMesh.scale.z = 1*(1+atmosphereDepth);
 
         
 
@@ -114,11 +133,11 @@ $("window").resize(function(){
         var copyShader = new THREE.ShaderPass(THREE.CopyShader);
         copyShader.renderToScreen = true;
         
-        var bloomStrength = 0.25;
+        bloomStrength = 0.25;
 		var bloomRadius = 2;
 		var bloomThreshold = 0.01;
 
-        var bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), bloomStrength, bloomRadius, bloomThreshold);
+        bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), bloomStrength, bloomRadius, bloomThreshold);
 
 		composer = new THREE.EffectComposer(renderer);
 
@@ -138,8 +157,8 @@ $("window").resize(function(){
             try{
             requestAnimationFrame(animate);
             
-            mesh.rotation.y += 0.0015;
-            atmosphereMesh.rotation.y += 0.001;
+            mesh.rotation.y += surfaceSpeed;
+            atmosphereMesh.rotation.y += atmosphereSpeed;
             renderer.render(scene, camera);
             composer.render();
             } catch(e) {

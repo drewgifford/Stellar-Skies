@@ -22,7 +22,7 @@
                     <p>Edit Surface</p>
                 </div>
             </div>
-            <div class="option mainOption" id="optionSurface">
+            <div class="option mainOption" id="optionAtmosphere">
                 <div class="optionImage">
                     <img src="./img/atmosphere.svg">
                     <p>Edit Atmosphere</p>
@@ -30,6 +30,10 @@
             </div>
         </div>
         <div class="optionPane surfaceOptions" id="surfaceOptions">
+
+            <div class="back">
+                <p class="controlLabel">&lt; Back</p>
+            </div>
             <p class="controlLabel">Terrain Color</p>
             <div class="control colorControl">
                 <div class="colorLeft">
@@ -41,7 +45,34 @@
                     <input class="planetColor" name="planetColorB" type="number" max=255 min=0 id="planetColorB" value=0><br>
                 </div>
                 <div class="colorRight">
-                    <div id="picker"></div>
+                    <div id="planetColorPicker"></div>
+                </div>
+            </div>
+            <p class="controlLabel">Terrain Image</p>
+            <div class="control fileControl">
+                <div class="fileLeft">
+                <label for="planetImg">Upload Image</label>
+                <input type="file" id="planetImg" name="planetImg" accept="image/*">
+                </div>
+                <div class="fileRight">
+                    <img id="planetImgPreview" src="https://placehold.it/180x180">
+                </div>
+            </div>
+            <p class="controlLabel">Terrain Map</p>
+            <div class="control fileControl">
+                <div class="fileLeft">
+                <label for="planetTerrain">Upload Image</label>
+                <input type="file" id="planetTerrain" name="planetTerrain" accept="image/*">
+                </div>
+                <div class="fileRight">
+                    <img id="planetTerrainPreview" src="https://placehold.it/180x180">
+                </div>
+            </div>
+
+            <p class="controlLabel">Planet Size</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetSize" name="planetSize" min=100 max=400 step=1> 
                 </div>
             </div>
 
@@ -50,13 +81,93 @@
                 <div class="slideContainer">
                 <input class="slider" type="range" id="planetRoughness" name="planetRoughness" min=0 max=300 step=1> 
                 </div>
+            </div>
 
+            <p class="controlLabel">Contour Visibility</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetContour" name="planetContour" min=0 max=300 step=1> 
+                </div>
+            </div>
 
+            <p class="controlLabel">Reflectiveness</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetReflectiveness" name="planetReflectiveness" min=0 max=300 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Rotation Speed</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetSpeed" name="planetSpeed" min=-300 max=300 step=1> 
+                </div>
             </div>
 
 
         </div>
+
+
+
         <div class="optionPane atmosphereOptions" id="atmosphereOptions">
+
+            <div class="back">
+                <p class="controlLabel">&lt; Back</p>
+            </div>
+            <p class="controlLabel">Atmosphere Color</p>
+            <div class="control colorControl">
+                <div class="colorLeft">
+                    <label for="atmosphereColorR">R</label>
+                    <input class="atmosphereColor" name="atmosphereColorR" type="number" max=255 min=0 id="atmosphereColorR" value=0><br>
+                    <label for="atmosphereColorR">G</label>
+                    <input class="atmosphereColor" name="atmosphereColorG" type="number" max=255 min=0 id="atmosphereColorG" value=0><br>
+                    <label for="atmosphereColorR">B</label>
+                    <input class="atmosphereColor" name="atmosphereColorB" type="number" max=255 min=0 id="atmosphereColorB" value=0><br>
+                </div>
+                <div class="colorRight">
+                    <div id="atmosphereColorPicker"></div>
+                </div>
+            </div>
+
+            <p class="controlLabel">Atmosphere Image</p>
+            <div class="control fileControl">
+                <div class="fileLeft">
+                <label for="atmosphereImg">Upload Image</label>
+                <input type="file" id="atmosphereImg" name="atmosphereImg" accept="image/*">
+                </div>
+                <div class="fileRight">
+                    <img id="atmosphereImgPreview" src="https://placehold.it/180x180">
+                </div>
+            </div>
+
+            <p class="controlLabel">Atmosphere Depth</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="atmosphereDepth" name="atmosphereDepth" min=0 max=300 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Atmosphere Opacity</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="atmosphereOpacity" name="atmosphereOpacity" min=0 max=300 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Atmosphere Speed</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="atmosphereSpeed" name="atmosphereSpeed" min=-300 max=300 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Aura</p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="atmosphereAura" name="atmosphereAura" min=0 max=300 step=1> 
+                </div>
+            </div>
+
 
         </div>
 

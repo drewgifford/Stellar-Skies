@@ -56,27 +56,28 @@ canvas {
     
 }
 .optionPane {
-    overflow: hidden;
     position: absolute;
     top: 0;
     right: -100%;
-    overflow: hidden;
+    overflow-y: scroll;
     width: 100%;
     transition: 200ms ease-out;
+    height: 100vh;
+    
     
 }
 .optionPane p {
-    font-size: 24px;
+    font-size: 18px;
 }
 .optionPane.visible {
     right: 0;
 }
 .control {
-    padding: 25px;
+    padding: 15px;
     width: calc(100%-50px);
 }
 .controlLabel {
-    padding: 25px 25px 0px 25px;
+    padding: 15px 15px 0px 15px;
 }
 
 
@@ -104,22 +105,58 @@ input[type=number] {
     width: 2em;
     font-weight: bold;
 }
-.colorControl {
+.colorControl, .fileControl {
     display: grid;
-    grid-template-columns: 2;
+    grid-template-columns: 1fr 1fr;
 }
 .colorControl > p {
     grid-row: 1;
     grid-column-start: 1;
     grid-column-end: 2;
 }
-.colorControl .colorLeft {
+.colorControl .colorLeft, .fileControl .fileLeft {
     grid-column: 1;
     grid-row: 2;
 }
-.colorControl .colorRight {
+.colorControl .colorRight, .fileControl .fileRight {
     grid-column: 2;
     grid-row: 2;
+    
+}
+.fileRight {
+    height: 75px;
+}
+.back p {
+    font-size: 24px;
+    font-weight: bold;
+}
+.back { 
+    cursor: pointer;
+}
+input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.fileControl label {
+    display: block;
+    width: calc(100% - 10px);
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 1em;
+    cursor: pointer;
+    text-align: center;
+    padding: 25px 0;
+}
+.fileControl img {
+    max-height: 75px;
+    max-width: 100%;
+}
+.fileControl .fileRight {
+    text-align: center;
 }
 
 
@@ -130,7 +167,7 @@ input[type=number] {
   .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 25px;
+    height: 15px;
     background: transparent;
     outline: none;
     -webkit-transition: .2s;
@@ -143,8 +180,8 @@ input[type=number] {
     border-radius: 10em;
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     background: white;
     border: none;
     cursor: pointer;
@@ -153,8 +190,8 @@ input[type=number] {
   .slider::-moz-range-thumb {
     border-radius: 10em;
     border: none;
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     background: white;
     cursor: pointer;
   }
