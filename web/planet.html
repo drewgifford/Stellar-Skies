@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;700&display=swap" rel="stylesheet"> 
+    <link href="./css/index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <link rel="icon" href="./img/favicon.svg">
+    <title>Stellar Skies - Edit Planet</title>
+    <meta charset="UTF-8">
+</head>
+
+
+
+<body>
+
+
+    
+
+    <div class="sidebar">
+        <div class="optionPane visible mainOptions" id="mainOptions">
+            <div class="option mainOption" id="optionSurface">
+                <div class="optionImage">
+                    <img src="./img/surface.svg">
+                    <p>Edit Surface</p>
+                </div>
+            </div>
+            <div class="option mainOption" id="optionAtmosphere">
+                <div class="optionImage">
+                    <img src="./img/atmosphere.svg">
+                    <p>Edit Atmosphere</p>
+                </div>
+            </div>
+        </div>
+        <div class="optionPane surfaceOptions" id="surfaceOptions">
+
+            <div class="back">
+                <p class="controlLabel">&lt; Back</p>
+            </div>
+            <p class="controlLabel">Terrain Color</p>
+            <div class="control colorControl">
+                <div class="colorLeft">
+                    <label for="planetColorR">R</label>
+                    <input class="planetColor" name="planetColorR" type="number" max=255 min=0 id="planetColorR" value=0><br>
+                    <label for="planetColorR">G</label>
+                    <input class="planetColor" name="planetColorG" type="number" max=255 min=0 id="planetColorG" value=0><br>
+                    <label for="planetColorR">B</label>
+                    <input class="planetColor" name="planetColorB" type="number" max=255 min=0 id="planetColorB" value=0><br>
+                </div>
+                <div class="colorRight">
+                    <div id="planetColorPicker"></div>
+                </div>
+            </div>
+            <p class="controlLabel">Terrain Image</p>
+            <div class="control fileControl">
+                <div class="fileLeft">
+                <label for="planetImg">Upload Image</label>
+                <input type="file" id="planetImg" name="planetImg" accept="image/*">
+                </div>
+                <div class="fileRight">
+                    <img id="planetImgPreview" src="">
+                </div>
+            </div>
+            <p class="controlLabel">Terrain Map</p>
+            <div class="control fileControl">
+                <div class="fileLeft">
+                <label for="planetTerrain">Upload Image</label>
+                <input type="file" id="planetTerrain" name="planetTerrain" accept="image/*">
+                </div>
+                <div class="fileRight">
+                    <img id="planetTerrainPreview" src="">
+                </div>
+            </div>
+
+            <p class="controlLabel">Planet Size <span id="planetSizeIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetSize" name="planetSize" min=10 max=100 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Terrain Roughness <span id="planetRoughnessIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetRoughness" name="planetRoughness" min=0 max=100 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Contour Visibility <span id="planetContourIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetContour" name="planetContour" min=0 max=100 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Reflectiveness <span id="planetReflectivenessIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetReflectiveness" name="planetReflectiveness" min=0 max=100 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Rotation Speed <span id="planetSpeedIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="planetSpeed" name="planetSpeed" min=-100 max=100 step=1> 
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="optionPane atmosphereOptions" id="atmosphereOptions">
+
+            <div class="back">
+                <p class="controlLabel">&lt; Back</p>
+            </div>
+            <p class="controlLabel">Atmosphere Size</p>
+            <div class="control colorControl">
+                <div class="colorLeft">
+                    <label for="atmosphereColorR">R</label>
+                    <input class="atmosphereColor" name="atmosphereColorR" type="number" max=255 min=0 id="atmosphereColorR" value=0><br>
+                    <label for="atmosphereColorR">G</label>
+                    <input class="atmosphereColor" name="atmosphereColorG" type="number" max=255 min=0 id="atmosphereColorG" value=0><br>
+                    <label for="atmosphereColorR">B</label>
+                    <input class="atmosphereColor" name="atmosphereColorB" type="number" max=255 min=0 id="atmosphereColorB" value=0><br>
+                </div>
+                <div class="colorRight">
+                    <div id="atmosphereColorPicker"></div>
+                </div>
+            </div>
+
+            <p class="controlLabel">Atmosphere Image</p>
+            <div class="control fileControl">
+                <div class="fileLeft">
+                <label for="atmosphereImg">Upload Image</label>
+                <input type="file" id="atmosphereImg" name="atmosphereImg" accept="image/*">
+                </div>
+                <div class="fileRight">
+                    <img id="atmosphereImgPreview" src="">
+                </div>
+            </div>
+
+            <p class="controlLabel">Atmosphere Depth <span id="atmosphereDepthIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="atmosphereDepth" name="atmosphereDepth" min=0 max=100 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Atmosphere Opacity <span id="atmosphereOpacityIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="atmosphereOpacity" name="atmosphereOpacity" min=0 max=100 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Atmosphere Speed <span id="atmosphereSpeedIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="atmosphereSpeed" name="atmosphereSpeed" min=-100 max=100 step=1> 
+                </div>
+            </div>
+
+            <p class="controlLabel">Aura <span id="atmosphereAuraIndicator"></span></p>
+            <div class="control sliderControl">
+                <div class="slideContainer">
+                <input class="slider" type="range" id="atmosphereAura" name="atmosphereAura" min=0 max=100 step=1> 
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./js/init.js"></script>
+    
+
+    <script src="https://threejs.org/build/three.min.js"></script>
+
+    <script src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://threejs.org/examples/js/postprocessing/MaskPass.js"></script>
+    <script src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://threejs.org/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://threejs.org/examples/js/shaders/FXAAShader.js"></script>
+    <script src="https://threejs.org/examples/js/shaders/ConvolutionShader.js"></script>
+    <script src="https://threejs.org/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://threejs.org/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/ui-edit.js"></script>
+
+
+</body>
+</html>

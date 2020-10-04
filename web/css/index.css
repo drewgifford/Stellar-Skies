@@ -1,0 +1,197 @@
+* {
+    font-family: "Roboto Mono", monospace;
+    color: white;
+    font-weight: thin;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+p {
+    margin: 0;
+}
+.bold {
+    font-weight: bold;
+}
+body {
+    margin: 0;
+}
+
+canvas {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.sidebar {
+    overflow: hidden;
+    max-width: 400px;
+    width: 33vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+.sidebar .mainOption {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    min-height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.sidebar .mainOption .optionImage {
+    flex-basis: 100%;
+
+}
+.mainOption:hover {
+    background: rgba(255,255,255,0.1);
+    cursor: pointer;
+    box-shadow: 0px 0px 200px 200px inset rgba(0,0,0,0.25);
+    
+}
+.optionPane {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    overflow-y: scroll;
+    width: 100%;
+    transition: 200ms ease-out;
+    height: 100vh;
+    
+    
+}
+.optionPane p {
+    font-size: 18px;
+}
+.optionPane.visible {
+    right: 0;
+}
+.control {
+    padding: 15px;
+    width: calc(100%-50px);
+}
+.controlLabel {
+    padding: 15px 15px 0px 15px;
+}
+
+
+
+input[type="number"] {
+    background: transparent;
+    border: none;
+    padding: 1em;
+    border-bottom: 2px solid white;
+    outline: 0;
+    
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+-moz-appearance: textfield;
+}
+.colorControl input[type=number]{
+    width: 2em;
+    font-weight: bold;
+}
+.colorControl, .fileControl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.colorControl > p {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.colorControl .colorLeft, .fileControl .fileLeft {
+    grid-column: 1;
+    grid-row: 2;
+}
+.colorControl .colorRight, .fileControl .fileRight {
+    grid-column: 2;
+    grid-row: 2;
+    
+}
+.fileRight {
+    height: 75px;
+}
+.back p {
+    font-size: 24px;
+    font-weight: bold;
+}
+.back { 
+    cursor: pointer;
+}
+input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.fileControl label {
+    display: block;
+    width: calc(100% - 10px);
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 1em;
+    cursor: pointer;
+    text-align: center;
+    padding: 25px 0;
+}
+.fileControl img {
+    max-height: 75px;
+    max-width: 100%;
+}
+.fileControl .fileRight {
+    text-align: center;
+}
+
+
+    .slideContainer {
+    width: calc(100% - 15px);
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    background: transparent;
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 10em;
+    border: 2px solid white;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    border-radius: 10em;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    border-radius: 10em;
+    border: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    cursor: pointer;
+  }
