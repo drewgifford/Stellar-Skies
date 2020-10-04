@@ -195,3 +195,194 @@ input[type="file"] {
     background: white;
     cursor: pointer;
   }
+
+  canvas {
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+body {
+    background-color: black;
+    background-repeat: repeat;
+    background-size: 1000px;
+    margin: 0;
+}
+.logoImg, .logoTextBox {
+    display: inline-block;
+}
+.logo {
+    padding: 1rem;
+}
+.logoText {
+    font-weight: bold;
+    font-size: 54px;
+    margin: 0;
+    line-height: 16px;
+    
+    
+}
+.upperText {
+    line-height: 54px;
+}
+.subText {
+    font-size: 16px;
+    font-weight: 100 !important;
+    margin: 0;
+}
+.systemsContainer {
+    width: 100vw;
+    margin-top: 2em;
+    
+}
+.systemsList {
+    max-width: 1400px;
+    width: 88%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.system,.popup .popupPlanetContainer {
+    border: 1px solid white;
+    min-height: 100px;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 1em;
+    cursor: pointer;
+    transition:50ms;
+    box-shadow: 0px 0px 15px transparent;
+}
+.system:hover,.popup .popupPlanetContainer:hover {
+    box-shadow: 0px 0px 15px rgba(255,255,255,0.75);
+}
+.systemProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1em;
+    
+}
+.system .systemProfile {
+    border-bottom: 1px solid white;
+}
+.systemProfilePicture {
+    max-width: 100px;
+    display: inline-block;
+    border-radius: 1em;
+    margin-right: 1em
+}
+.systemProfileName {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 24px;
+}
+.systemName {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+.systemName .systemPlanetCount {
+    font-weight: 100;
+}
+.systemPlanetsBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 0.5em;
+}
+.planet {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    height: 40px;
+    width: 40px;
+    margin: 10px auto;
+    border-radius: 100%;
+    background: white;
+}
+.planetCount {
+    text-align: right;
+    margin-right: 1em;
+    font-weight: bold;
+}
+.account {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1em;
+}
+.account > a {
+    display: inline-block;
+    padding: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 0px inset white;
+    transition: 50ms;
+}
+.account > a:hover {
+    box-shadow: 0px 2px inset white;
+}
+.popupContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.95);
+
+}
+.popupPlanets {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 2em;
+}
+.popupPlanetContainer {
+    text-align: center;
+    padding: 2em 1em;
+    border: 1px solid white;
+    border-radius: 1em;
+    margin: 0 1em 2em 1em;
+}
+a {
+    text-decoration: none;
+}
+a:visited {
+    color: white;
+}
+.popup .planet {
+    width: 100px;
+    height: 100px;
+}
+.popup .planetName {
+    font-size: 24px;
+    font-weight: bold;
+}
+.popup {
+    position: relative;
+    
+    max-width: 1200px;
+    margin: 5vh auto auto auto;
+}
+.popupContainer {
+    overflow-y: scroll;
+}
+.center {
+    text-align: center;
+}
+.closePopup {
+    position: absolute;
+    top: -1rem;
+    right: 0;
+    font-size: 54px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 1rem;
+    
+}
+.closePopup p {
+    color: rgba(255,255,255,0.6);
+    transition: 50ms;
+}
+.closePopup:hover p {
+    color: rgba(255,255,255,1);
+}
