@@ -2,6 +2,11 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
+<style>
+    #profilePicture {
+        display: none;
+    }
+</style>
 <div class="absoluteCenterContainer">
     <div class="absoluteCenter">
         <p class="bold title center">Sign Up</p>
@@ -15,6 +20,7 @@
             <p>Confirm Password:</p>
             <p><input type="password" name="pasc" id="confirmPass"/></p>
             <p id="validate-status">Type in a password</p>
+            <p><input id="profilePicture" type="text" value="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" /></p>
             <p><input id="submit" type="submit" value="Submit" /></p>
         </form>
     </div>

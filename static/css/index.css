@@ -298,7 +298,7 @@ body {
 .systemProfilePicture {
     max-width: 100px;
     display: inline-block;
-    border-radius: 1em;
+    border-radius: 100%;
     margin-right: 1em
 }
 .systemProfileName {
@@ -392,7 +392,8 @@ body {
 
 .container .content {
     width: 88%;
-    max-width: 1400px;
+    max-width: 1200px;
+    margin: auto;
 }
 .popupPlanets {
     display: grid;
@@ -465,13 +466,9 @@ a.button:hover,button:hover,input[type="submit"]:hover {
 .absoluteCenter {
     max-width: 400px;
     width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     margin: auto;
 
 }
 .absoluteCenterContainer {
-    height: 50vh;
+    width: 100vw;
 }
