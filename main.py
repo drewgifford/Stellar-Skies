@@ -179,8 +179,9 @@ def account():
         cursor = db.cursor()
         cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
         result = cursor.fetchone()
-        if str(result[1]) == str(pas):
-            print(username)
+        if str(result[1]) != str(pas):
+            return redirect(url_for("account", wrong_pas=True))
+        else:
             if str(username) != '' and str(result[2]) != str(username):
                 sql = ("UPDATE account_data SET username = ? WHERE email = ?")
                 val = (username, session["email"])
@@ -198,7 +199,7 @@ def account():
                 db.commit()
             cursor.close()
             db.close()
-        return redirect(url_for("home"))
+            return redirect(url_for("home"))
     else:
         if "email" in session:
             db = sqlite3.connect('stellar.db')
