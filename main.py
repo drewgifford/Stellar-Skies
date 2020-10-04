@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, session
 import sqlite3
+import random
 
 app = Flask(__name__)
 app.secret_key = "Testing"
@@ -34,7 +35,6 @@ def planet_submit():
         print(request.json)
         planetName = request.json['planetName']
         planetDescription = request.json['planetDescription']
-        planetAuthor = request.json['planetAuthor']
         publishDate = request.json['publishDate']
         planetColor = request.json['planetColor']
         planetTerrainImg = request.json['planetTerrainImg']
@@ -51,8 +51,17 @@ def planet_submit():
         atmosphereImg = request.json['atmosphereImg']
         db = sqlite3.connect('stellar.db')
         cursor = db.cursor()
-        sql = ("INSERT INTO planet_data(planetName, planetDescription, planetAuthor, publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-        val = (planetName, planetDescription, planetAuthor, publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg)
+        cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
+        result = cursor.fetchone()
+        planetID = random.randint(1111,9999)
+        sql = ("INSERT INTO planet_data(planetID, planetName, planetDescription, planetAuthor, publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg, systemID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+        val = (planetID, planetName, planetDescription, session["user"], publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg, result[5])
+        cursor.execute(sql, val)
+        db.commit()
+        cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
+        result = cursor.fetchone()
+        sql = ("UPDATE account_data SET total_planets = ? WHERE email = ?")
+        val = (result[6] + 1, session["email"])
         cursor.execute(sql, val)
         db.commit()
         cursor.close()

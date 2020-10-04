@@ -57,7 +57,7 @@
                     <p class="center">You cannot edit your planet. All changes are final.</p>
                     <div class="buttonGroup">
                         
-                        <a class="button red" id="confirmSave">Yes, I understand!</a> <a class="button closePopupButton">Go Back</a> 
+                        <a class="button red" id="confirmSave" href="/">Yes, I understand!</a> <a class="button closePopupButton">Go Back</a> 
                     </div>
                 </div>
             </div>
@@ -220,12 +220,13 @@
         $(document).ready(function(){
             $(".popupContainer").fadeOut(0);
             $("#confirmSave").click(function(){
-
+                var d = new Date();
+                var date = (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();
                 var obj = {
                     planetName: $("#planetName").val(),
                     planetDescription: $("#planetDescription").val(),
                     planetAuthor: planetAuthor,
-                    publishDate: Date.now(),
+                    publishDate: date,
                     planetColor: planetColor,
                     planetTerrainImg: planetTerrainImg,
                     planetImg: planetImg,
