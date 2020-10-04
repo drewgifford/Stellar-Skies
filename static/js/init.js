@@ -33,8 +33,8 @@ var
     atmosphereImg;
 
 if (jsonObj == null) {
-    planetName = "Earth";
-    planetDescription = "A planet";
+    planetName = "My Planet";
+    planetDescription = "Description of your planet";
     planetAuthor = "Toadally";
     publishDate = Date.now();
     planetColor = "#ffffff";
@@ -74,9 +74,9 @@ if (jsonObj == null) {
 
 $(document).ready(function(){
     $("#planetName").val(planetName);
-    $("#planetDescription").val(planetName);
+    $("#planetDescription").val(planetDescription);
     $("#planetName").html(planetName);
-    $("#planetDescription").html(planetName);
+    $("#planetDescription").html(planetDescription);
     initSlider("#planetSize", planetSize);
     initSlider("#planetRoughness", planetRoughness);
     initSlider("#planetContour", planetContour);
