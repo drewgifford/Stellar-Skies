@@ -52,7 +52,8 @@ def planet_view(planet_id):
                "atmosphereDepth" : result[14],
                "atmosphereSpeed" : result[16],
                "atmosphereAura" : result[17],
-               "atmosphereImg" : result[18]}
+               "atmosphereImg" : result[18],
+               "atmosphereOpacity" : result[15]}
     return render_template("viewplanet.html", planet=planet)
 
 @app.route("/planet/submit/", methods=["POST", "GET"])
@@ -75,13 +76,14 @@ def planet_submit():
         atmosphereSpeed = request.json['atmosphereSpeed']
         atmosphereAura = request.json['atmosphereAura']
         atmosphereImg = request.json['atmosphereImg']
+        atmosphereOpacity = request.json['atmosphereOpacity']
         db = sqlite3.connect('stellar.db')
         cursor = db.cursor()
         cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
         result = cursor.fetchone()
         planetID = random.randint(1111,9999)
-        sql = ("INSERT INTO planet_data(planetID, planetName, planetDescription, planetAuthor, publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg, systemID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-        val = (planetID, planetName, planetDescription, session["user"], publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg, result[5])
+        sql = ("INSERT INTO planet_data(planetID, planetName, planetDescription, planetAuthor, publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg, systemID, atmosphereOpacity) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+        val = (planetID, planetName, planetDescription, session["user"], publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg, result[5], atmosphereOpacity)
         cursor.execute(sql, val)
         db.commit()
         cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
