@@ -6,192 +6,7 @@
     <script src="https://kit.fontawesome.com/841ee7423a.js" crossorigin="anonymous"></script>
     <link rel="icon" href="./img/favicon.svg">
     <title>Stellar Skies - Home</title>
-    <style>
-        canvas {
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-        }
-        body {
-            background-color: black;
-            background-repeat: repeat;
-            background-size: 1000px;
-            margin: 0;
-        }
-        .logoImg, .logoTextBox {
-            display: inline-block;
-        }
-        .logo {
-            padding: 1rem;
-        }
-        .logoText {
-            font-weight: bold;
-            font-size: 54px;
-            margin: 0;
-            line-height: 16px;
-            
-            
-        }
-        .upperText {
-            line-height: 54px;
-        }
-        .subText {
-            font-size: 16px;
-            font-weight: 100 !important;
-            margin: 0;
-        }
-        .systemsContainer {
-            width: 100vw;
-            margin-top: 2em;
-            
-        }
-        .systemsList {
-            max-width: 1400px;
-            width: 88%;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-        .system,.popup .popupPlanetContainer {
-            border: 1px solid white;
-            min-height: 100px;
-            border-radius: 1em;
-            padding: 1em;
-            margin: 1em;
-            cursor: pointer;
-            transition:50ms;
-            box-shadow: 0px 0px 15px transparent;
-        }
-        .system:hover,.popup .popupPlanetContainer:hover {
-            box-shadow: 0px 0px 15px rgba(255,255,255,0.75);
-        }
-        .systemProfile {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-bottom: 1em;
-            
-        }
-        .system .systemProfile {
-            border-bottom: 1px solid white;
-        }
-        .systemProfilePicture {
-            max-width: 100px;
-            display: inline-block;
-            border-radius: 1em;
-            margin-right: 1em
-        }
-        .systemProfileName {
-            display: inline-block;
-            font-weight: bold;
-            font-size: 24px;
-        }
-        .systemName {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 0.5em;
-        }
-        .systemName .systemPlanetCount {
-            font-weight: 100;
-        }
-        .systemPlanetsBox {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            margin-top: 0.5em;
-        }
-        .planet {
-            display: block;
-            max-width: 100%;
-            max-height: 100%;
-            height: 40px;
-            width: 40px;
-            margin: 10px auto;
-            border-radius: 100%;
-            background: white;
-        }
-        .planetCount {
-            text-align: right;
-            margin-right: 1em;
-            font-weight: bold;
-        }
-        .account {
-            position: fixed;
-            top: 0;
-            right: 0;
-            padding: 1em;
-        }
-        .account > a {
-            display: inline-block;
-            padding: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0px 0px inset white;
-            transition: 50ms;
-        }
-        .account > a:hover {
-            box-shadow: 0px 2px inset white;
-        }
-        .popupContainer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 100vh;
-            width: 100vw;
-            background: rgba(0,0,0,0.95);
 
-        }
-        .popupPlanets {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            margin-top: 2em;
-        }
-        .popupPlanetContainer {
-            text-align: center;
-            padding: 2em 1em;
-            border: 1px solid white;
-            border-radius: 1em;
-            margin: 0 1em 2em 1em;
-        }
-        .popup .planet {
-            width: 100px;
-            height: 100px;
-        }
-        .popup .planetName {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .popup {
-            position: relative;
-            
-            max-width: 1200px;
-            margin: 5vh auto auto auto;
-        }
-        .popupContainer {
-            overflow-y: scroll;
-        }
-        .center {
-            text-align: center;
-        }
-        .closePopup {
-            position: absolute;
-            top: -1rem;
-            right: 0;
-            font-size: 54px;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 1rem;
-            
-        }
-        .closePopup p {
-            color: rgba(255,255,255,0.6);
-            transition: 50ms;
-        }
-        .closePopup:hover p {
-            color: rgba(255,255,255,1);
-        }
-    </style>
     <meta charset="UTF-8">
 </html>
 
@@ -244,23 +59,16 @@
                         <p class="systemName">TodeClan <span class="systemPlanetCount">(2)</span></p> <!-- System name, planet count -->
                         <div class="systemPlanetsBox">
                             <div class="planetContainer">
-                                <div class="planet" style="background-color: #ffffff"></div> <!-- Replace #ffffff with planet color -->> 
-
-                                </div>
+                                <div class="planet" style="background-color: #ffffff"></div> <!-- Replace #ffffff with planet color -->
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-
                 <div class="popupContainer">
-
                     <div class="popup">
                         <div class="closePopup">
                             <p>&times;</p>
                         </div>
-            
                         <div class="systemProfile">
                             <img class="systemProfilePicture" src="https://avatars0.githubusercontent.com/u/43815275?s=460&u=2753f461d6d9b4598dfbe8e7baf4125ced5e3979&v=4"> <!-- Profile picture -->
                             <p class="systemProfileName">JarDidi</p> <!-- Username -->
@@ -275,18 +83,10 @@
                                 <p class="planetName">Toad's Planet</p> <!-- Planet name -->
                                 <p class="planetDate">Created 10/3/2020</p> <!-- Planet creation date -->
                             </a>
-            
                         </div>
-            
-            
                     </div>
-            
-            
                 </div>
             </div>
-
-
-
         </div>
 
 
@@ -298,120 +98,8 @@
     <script src="./lib/infinitecanvas/infinite-canvas.js"></script>
 
 
-    <script>
-        $(".popupContainer").fadeOut(0);
-        $(".systemInfo").click(function(){
-            $(this).siblings().fadeIn(150);
-        });
-        $(".closePopup").click(function(){
-            $(".popupContainer").fadeOut(150);
-        });
-    </script>
-    <script>
-
-    var background = document.getElementById("space"),
-	bgCtx = background.getContext("2d"),
-	width = window.innerWidth,
-	height = window.innerHeight;
-
-	background.width = width;
-	background.height = height;
-
-    $(window).on("resize", function(){
-        height = document.body.offsetHeight;
-        width = window.innerWidth;
-        background.width = width;
-        background.height = height;
-        entities = [];
-		addStars();
-    });
-
-	// Second canvas used for the stars
-	bgCtx.fillStyle = '#05004c';
-	bgCtx.fillRect(0,0,width,height);
-
-	// stars
-	function Star(options){
-		this.size = Math.random()*2;
-		this.speed = Math.random()*.1;
-		this.x = options.x;
-		this.y = options.y;
-	}
-
-	Star.prototype.reset = function(c){
-		this.size = Math.random()*2;
-        this.speed = Math.random()*.1;
-        if(c == "+x"){
-            this.x = width;
-            this.y = Math.random()*height;
-        }
-        if(c == "-x"){
-            this.x = 0;
-		    this.y = Math.random()*height;
-        }
-        if(c == "+y"){
-            this.y = height;
-            this.x = Math.random()*width;
-        }
-        if(c == "-y"){
-            this.y = 0;
-		    this.x = Math.random()*width;
-        }
-	}
-	
-	Star.prototype.update = function(offsetX, offsetY){
-        this.x-=this.speed;
-        this.x+=offsetX;
-        this.y+=offsetY;
-		if((this.x<0)||( this.x > width)){
-            if(this.x < 0){
-                this.reset("+x");
-            } else {
-                this.reset("-x");
-            }
-		} else
-        if((this.y < 0) || (this.y > height)){
-            if(this.y < 0){
-                this.reset("+y");
-            } else {
-                this.reset("-y");
-            }
-        }
-        else {
-		  bgCtx.fillRect(this.x,this.y,this.size,this.size); 
-		}
-    }
-
-	var entities = [];
-	
-	// init the stars
-	function addStars(){
-		for(var i=0; i < height; i++){
-			entities.push(new Star({x:Math.random()*width, y:Math.random()*height}));
-		}
-	}
-  
-
-	addStars();
-	
-	//animate background
-	function animate(){
-		bgCtx.fillStyle = '#02000C';
-		bgCtx.fillRect(0,0,width,height);
-		bgCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-		bgCtx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-
-		var entLen = entities.length;
-        
-		while(entLen--){
-			entities[entLen].update(0,0);
-        }
-
-		
-		requestAnimationFrame(animate);
-	}
-	animate();
-    </script>
+    <script src="./js/frontpage.js"></script>
+    <script src="./js/stars.js"></script>
 
 
 </body>
