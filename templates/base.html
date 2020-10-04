@@ -19,20 +19,22 @@
 
             </a>
             <div class="accountGroup">
-            <a class="profile" href=""> <!--Profile page link-->
-                <p><i class="fas fa-user"></i> Toadally</p>
-            </a>
+            {% if email%}
+                <a class="profile" href=""> <!--Profile page link-->
+                    <p><i class="fas fa-user"></i> {{username}}</p>
+                </a>
+                <a class="logOut" href="/logout"> <!--Log out page link-->
+                    <p><i class="fas fa-sign-out-alt"></i> Sign Out</p>
+                </a>
+            {% else %}
+                <a class="logIn" href="/login" >  <!--Log in page link-->
+                    <p><i class="fas fa-sign-in-alt"></i> Log In</p>
+                </a>
     
-            <a class="logIn" href="" >  <!--Log in page link-->
-                <p><i class="fas fa-sign-in-alt"></i> Log In</p>
-            </a>
-    
-            <a class="logOut" href=""> <!--Log out page link-->
-                <p><i class="fas fa-sign-out-alt"></i> Sign Out</p>
-            </a>
-            <a class="register" href=""> <!--Register page link-->
-                <p><i class="fas fa-user-check"></i> Sign Up</p>
-            </a>
+                <a class="register" href="/signup"> <!--Register page link-->
+                    <p><i class="fas fa-user-check"></i> Register</p>
+                </a>
+            {% endif %}
             <br>
             <p class="planetCount">1500 planets created</p> <!-- Total planets in system -->
             </div>
