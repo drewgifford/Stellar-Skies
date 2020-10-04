@@ -116,9 +116,9 @@ def login():
         cursor.execute("SELECT email, username, password, pfp, system_name FROM account_data WHERE email = '{}'".format(em))
         result = cursor.fetchone()
         if result is None:
-            return redirect(url_for("signup"))
+            return render_template("login.html", invalid=True)
         elif str(pas) != str(result[2]):
-            return redirect(url_for("login"))
+            return render_template("login.html", invalid=True)
         else:
             session["user"] = str(result[1])
             session["email"] = str(result[0])
@@ -150,7 +150,7 @@ def signup():
         cursor.execute("SELECT email FROM account_data WHERE email = '{}'".format(email))
         result = cursor.fetchone()
         if result is not None:
-            return redirect(url_for("login"))
+            return render_template("signup.html", invalid=True)
         elif pas == pasc:
             systemID = random.randint(1111,9999)
             sql = ("INSERT INTO account_data(email, password, username, total_planets, system_id, pfp, system_name) VALUES(?,?,?,?,?,?,?)")
@@ -180,7 +180,7 @@ def account():
         cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
         result = cursor.fetchone()
         if str(result[1]) != str(pas):
-            return redirect(url_for("account", wrong_pas=True))
+            return render_template("account.html", email=session["email"], username=session["user"], pfp=str(result[3]), system_name=str(result[4]), wrong_password=True)
         else:
             if str(username) != '' and str(result[2]) != str(username):
                 sql = ("UPDATE account_data SET username = ? WHERE email = ?")

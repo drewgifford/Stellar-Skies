@@ -20,7 +20,11 @@ form {
 form input[type="submit"] {
     padding: 15px 2em;
 }
-#validate-status {
+#validate-status, .errorMsg {
     color: #e74c3c;
     font-weight: bold;
+    margin-bottom: 10px;
+}
+form input[type="submit"]:disabled {
+    background: gray;
 }

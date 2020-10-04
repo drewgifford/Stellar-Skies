@@ -51,12 +51,29 @@
             <p><input type="text" id="profilePicture" name="profilePicture" value="IMAGE"/></p>
             <label for="lpas">Confirm Password</label>
             <p><input type="password" id="pconfirm" name="pconfirm" /></p>
-            <p><input type="submit" value="Update Account" /></p>
+            <p id="validate-status">Type in your password</p>
+            {% if wrong_password == True %}
+                <p class="errorMsg">Password incorrect. Try again.</p>
+            {% endif %}
+            <p><input id="submit" type="submit" value="Update Account"/></p>
         </form>
     </div>
 </div>
 
 <script>
+    $(document).ready(function(){
+        $("#submit").prop("disabled",true);
+        $("#pconfirm").on("keyup", function(){
+            if($("#pconfirm").val() == ""){
+                $("#validate-status").html("Type in your password");
+                $("#submit").prop("disabled",true);
+            } else {
+                $("#validate-status").html("");
+                $("#submit").prop("disabled",false);
+            }
+        });
+
+    });
 
     $("#profilePictureImg").on("change", function(){
             var input = this;

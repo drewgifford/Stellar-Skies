@@ -10,6 +10,9 @@
             <p><input type="text" id="lem" name="lem" /></p>
             <label for="lpas">Password</label>
             <p><input type="password" id="lpas" name="lpas" /></p>
+            {% if invalid == True %}
+                <p class="errorMsg">Invalid credentials.</p>
+            {% endif %}
             <p><input type="submit" value="Submit" /></p>
         </form>
         <a href="/signup">Register an Account &gt;</a>

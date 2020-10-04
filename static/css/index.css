@@ -457,18 +457,21 @@ a.button,button,input[type="submit"] {
     color: black;
     font-weight: bold;
     margin: 10px 10px 10px 0px;
-    cursor: pointer; 
+    
     box-shadow: 0px 0px 15px transparent;
 }
-a.button:hover,button:hover,input[type="submit"]:hover {
+a.button,button,input[type="submit"]:not(:disabled){
+    cursor: pointer;
+}
+a.button:hover,button:hover,input[type="submit"]:not(:disabled)hover {
     box-shadow: 0px 0px 15px rgba(255,255,255,0.75);
 }
 .absoluteCenter {
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
     margin: auto;
 
 }
 .absoluteCenterContainer {
-    width: 100vw;
+    
 }
