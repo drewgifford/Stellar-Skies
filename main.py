@@ -64,7 +64,13 @@ def planet_view(planet_id):
                "atmosphereAura" : result[17],
                "atmosphereImg" : result[18],
                "atmosphereOpacity" : result[15]}
-    return render_template("viewplanet.html", planet=planet, email=session["email"], username=session["user"])
+    if request.method == "POST":
+        return render_template("viewplanet.html", planet=planet)
+    else:
+        if "email" in session:
+            return render_template("viewplanet.html", planet=planet, email=session["email"], username=session["user"])
+        else:
+            return render_template("viewplanet.html", planet=planet)
 
 @app.route("/planet/submit/", methods=["POST", "GET"])
 def planet_submit():
