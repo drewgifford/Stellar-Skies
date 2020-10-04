@@ -29,14 +29,11 @@ $(document).ready(function(){
 
     }
 
-    function initializeSlider(id, divideBy, func){
+    function initializeSlider(id, func){
         $(id).on("input", function(){
             var val = $(this).val();
-            if(divideBy && (divideBy != 0)){
-                val = val / divideBy;
-            }
             func(val);
-            
+            $(id+"Indicator").html(val+"%");
 
         });
     }
@@ -56,7 +53,7 @@ $(document).ready(function(){
             }
         });
     }
-    function initializeColorPicker(id, rgbInput, targetMesh){
+    function initializeColorPicker(id, rgbInput, func){
         var colorPicker = new iro.ColorPicker(id, {
             width: 200,
             layout: [
@@ -81,8 +78,7 @@ $(document).ready(function(){
               $("#"+rgbInput+"R").val(color.red);
               $("#"+rgbInput+"G").val(color.green);
               $("#"+rgbInput+"B").val(color.blue);
-    
-              targetMesh.material.color = new THREE.Color(color.hexString);
+              func(color.hexString);
     
               
             }
@@ -92,47 +88,62 @@ $(document).ready(function(){
               var r = $("#"+rgbInput+"R").val()
               var g = $("#"+rgbInput+"G").val();
               var b = $("#"+rgbInput+"B").val();
-                targetMesh.material.color = new THREE.Color("rgb("+r+","+g+","+b+")");
+              var rgb = "rgb("+r+","+g+","+b+")";
+              colorPicker.color = rgb;
+              func(rgb);
           });   
     }
-    initializeColorPicker("#planetColorPicker", "planetColor", mesh);
-    initializeColorPicker("#atmosphereColorPicker", "atmosphereColor", atmosphereMesh);
-
-    initializeSlider("#planetRoughness", 1000, function(val){
-        mesh.material.displacementScale = val;
+    initializeColorPicker("#planetColorPicker", "planetColor", function(color){
+        planetColor = color;
+        planetMesh.material.color = new THREE.Color(color);
     });
-    initializeSlider("#planetContour", 300, function(val){
-        mesh.material.bumpScale = val;
-    });
-    initializeSlider("#planetReflectiveness", 60, function(val){
-        mesh.material.shininess = val;
-    });
-    initializeSlider("#planetSize", 400, function(val){
-        mesh.scale.x = val;
-        mesh.scale.y = val;
-        mesh.scale.z = val;
-        atmosphereMesh.scale.x = val*(1+atmosphereDepth);
-        atmosphereMesh.scale.y = val*(1+atmosphereDepth);
-        atmosphereMesh.scale.z = val*(1+atmosphereDepth);
+    initializeColorPicker("#atmosphereColorPicker", "atmosphereColor", function(color){
+        atmosphereColor = color;
+        atmosphereMesh.material.color = new THREE.Color(color);
     });
 
-    initializeSlider("#atmosphereDepth", 900, function(val){
+    initializeSlider("#planetRoughness", function(val){
+        planetRoughness = val;
+        planetMesh.material.displacementScale = val/333;
+    });
+    initializeSlider("#planetContour", function(val){
+        planetContour = val;
+        planetMesh.material.bumpScale = val/100;
+    });
+    initializeSlider("#planetReflectiveness", function(val){
+        planetReflectiveness = val;
+        planetMesh.material.shininess = val/60;
+    });
+    initializeSlider("#planetSize", function(val){
+        planetSize = val;
+
+        planetMesh.scale.x = val/100;
+        planetMesh.scale.y = val/100;
+        planetMesh.scale.z = val/100;
+        atmosphereMesh.scale.x = (val/100)*(1+(atmosphereDepth/300));
+        atmosphereMesh.scale.y = (val/100)*(1+(atmosphereDepth/300));
+        atmosphereMesh.scale.z = (val/100)*(1+(atmosphereDepth/300));
+    });
+
+    initializeSlider("#atmosphereDepth", function(val){
         atmosphereDepth = val;
-        atmosphereMesh.scale.x = mesh.scale.x*(1+atmosphereDepth);
-        atmosphereMesh.scale.y = mesh.scale.y*(1+atmosphereDepth);
-        atmosphereMesh.scale.z = mesh.scale.z*(1+atmosphereDepth);
+        atmosphereMesh.scale.x = planetMesh.scale.x*(1+(atmosphereDepth/300));
+        atmosphereMesh.scale.y = planetMesh.scale.y*(1+(atmosphereDepth/300));
+        atmosphereMesh.scale.z = planetMesh.scale.z*(1+(atmosphereDepth/300));
     });
-    initializeSlider("#atmosphereOpacity", 300, function(val){
-        atmosphereMesh.material.opacity = val;
+    initializeSlider("#atmosphereOpacity", function(val){
+        atmosphereOpacity = val;
+        atmosphereMesh.material.opacity = val/100;
     });
-    initializeSlider("#atmosphereSpeed", 30000, function(val){
+    initializeSlider("#atmosphereSpeed", function(val){
         atmosphereSpeed = val;
     });
-    initializeSlider("#planetSpeed", 30000, function(val){
-        surfaceSpeed = val;
+    initializeSlider("#planetSpeed", function(val){
+        planetSpeed = val;
     });
-    initializeSlider("#atmosphereAura", 300, function(val){
-        bloomPass.strength = val;
+    initializeSlider("#atmosphereAura", function(val){
+        atmosphereAura = val;
+        bloomPass.strength = val/100;
     });
 
     initializeFileUpload("#atmosphereImg", function(val){
@@ -142,13 +153,13 @@ $(document).ready(function(){
 
     initializeFileUpload("#planetTerrain", function(val){
         var texture = new THREE.TextureLoader().load(val);
-        mesh.material.displacementMap = texture;
-        mesh.material.bumpMap = texture;
+        planetMesh.material.displacementMap = texture;
+        planetMesh.material.bumpMap = texture;
     });
     initializeFileUpload("#planetImg", function(val){
         var texture = new THREE.TextureLoader().load(val);
-        mesh.material.map = texture;
-        mesh.material.needsUpdate = true;
+        planetMesh.material.map = texture;
+        planetMesh.material.needsUpdate = true;
     });
 
     
