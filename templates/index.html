@@ -23,6 +23,13 @@
     </div>
 
     <div class="account">
+
+            <a class="newPlanet" href="/edit"> <!--New Planet link-->
+                <p><i class="far fa-plus-square"></i> New Planet</p>
+            </a>
+            <a class="about" href="/about"> <!--About link-->
+                <p><i class="fas fa-question"></i> About</p>
+            </a>
         {% if email%}
             <a class="profile" href="/account"> <!--Profile page link-->
                 <p><i class="fas fa-user"></i> {{username}}</p>
@@ -47,8 +54,13 @@
 
 
     <div class="systemsContainer">
-
+        
         <div class="systemsList">
+
+            <div class="searchBox">
+                <p class="searchIcon"><i class="fas fa-search"></i></p>
+                <input type="text" placeholder="Search">
+            </div>
             {% for result in data %}
                 {% if result[6] > 0 %}
                 <div class="system">

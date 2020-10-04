@@ -243,6 +243,21 @@ body {
     margin-top: 2em;
     
 }
+.searchBox {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    padding: 1rem;
+}
+.searchBox > * {
+    display: inline-block;
+    font-size: 36px;
+}
+.searchBox input {
+    background: transparent;
+    font-weight: bold;
+    outline: 0;
+    border: none;
+}
 .systemsList {
     max-width: 1400px;
     width: 88%;
