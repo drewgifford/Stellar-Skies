@@ -32,7 +32,7 @@ var
     atmosphereAura,
     atmosphereImg;
 
-if (typeof jsonObj !== 'undefined') {
+if (jsonObj == null) {
     planetName = "Earth";
     planetDescription = "A planet";
     planetAuthor = "Toadally";
