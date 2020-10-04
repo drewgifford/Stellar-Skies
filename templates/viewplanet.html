@@ -6,7 +6,7 @@
     <link href="/static/css/planet.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
     <link rel="icon" href="/static/img/favicon.svg">
-    <title>Stellar Skies - Edit Planet</title>
+    <title>Stellar Skies - PLANET NAME</title> <!-- PUT PLANET NAME HERE -->
     <meta charset="UTF-8">
 </head>
 
@@ -17,14 +17,18 @@
     <form spellcheck="false" autocomplete="off">
     <div class="textInput">
         <p>Planet Name</p>
-        <input id="planetName" type="text" name="planetName" maxlength=20 value="" placeholder="Click to edit">
+        <p id="planetName" type="text">
+        <p>Created by: Toadally</p>
         <p>Description</p>
-        <textarea id="planetDescription" type="text" name="planetDescription" placeholder="Click to edit"></textarea>
+        <p id="planetDescription" type="text"></p>
 
     </div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        var jsonObj = JSON.parse('{{ planet | tojson | safe }}')
+    </script>
     <script src="/static/js/init.js"></script>
     
     <script src="https://threejs.org/build/three.min.js"></script>
