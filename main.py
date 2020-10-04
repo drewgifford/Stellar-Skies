@@ -112,8 +112,9 @@ def signup():
         if result is not None:
             return redirect(url_for("login"))
         elif pas == pasc:
-            sql = ("INSERT INTO account_data(email, password, username) VALUES(?,?,?)")
-            val = (str(email), str(pas), str(usr))
+            systemID = random.randint(1111,9999)
+            sql = ("INSERT INTO account_data(email, password, username, total_planets, system_id) VALUES(?,?,?,?,?)")
+            val = (str(email), str(pas), str(usr), 0, systemID)
             cursor.execute(sql, val)
             db.commit()
             session["user"] = usr
