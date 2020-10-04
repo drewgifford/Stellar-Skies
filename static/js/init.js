@@ -70,7 +70,10 @@ if (jsonObj == null) {
     atmosphereSpeed = jsonObj.atmosphereSpeed;
     atmosphereAura = jsonObj.atmosphereAura;
     atmosphereImg = jsonObj.atmosphereImg;
+<<<<<<< HEAD
     atmosphereOpacity = jsonObj.atmosphereOpacity;
+=======
+>>>>>>> c649bb01b6995dc6012b3d89196695a8c1fe16f1
 }
 
 $(document).ready(function(){
