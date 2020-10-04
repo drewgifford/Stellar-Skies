@@ -18,7 +18,7 @@ form {
     margin-bottom: 15px;
 }
 form input[type="submit"] {
-    width: 100px;
+    padding: 0px 2em;
 }
 #validate-status {
     color: #e74c3c;
