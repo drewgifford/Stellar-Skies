@@ -27,7 +27,13 @@ def home():
 
 @app.route("/about/")
 def about():
-    return render_template("about.html", email=session["email"], username=session["user"])
+    if request.method == "POST":
+        return render_template("about.html")
+    else:
+        if "email" in session:
+            return render_template("about.html",email=session["email"], username=session["user"])
+        else:
+            return render_template("about.html")
 
 @app.route("/planet/")
 def planet():
@@ -107,7 +113,7 @@ def login():
         pas = request.form['lpas']
         db = sqlite3.connect('stellar.db')
         cursor = db.cursor()
-        cursor.execute("SELECT email, username, password FROM account_data WHERE email = '{}'".format(em))
+        cursor.execute("SELECT email, username, password, pfp, system_name FROM account_data WHERE email = '{}'".format(em))
         result = cursor.fetchone()
         if result is None:
             return redirect(url_for("signup"))
@@ -116,6 +122,7 @@ def login():
         else:
             session["user"] = str(result[1])
             session["email"] = str(result[0])
+            session["system_name"] = str(result[4])
             return redirect(url_for("home"))
     else:
         if "user" in session:
@@ -137,6 +144,7 @@ def signup():
         pasc = request.form['pasc']
         email = request.form['em']
         usr = request.form['usr']
+        pfp = request.form['profilePicture']
         db = sqlite3.connect('stellar.db')
         cursor = db.cursor()
         cursor.execute("SELECT email FROM account_data WHERE email = '{}'".format(email))
@@ -145,12 +153,13 @@ def signup():
             return redirect(url_for("login"))
         elif pas == pasc:
             systemID = random.randint(1111,9999)
-            sql = ("INSERT INTO account_data(email, password, username, total_planets, system_id) VALUES(?,?,?,?,?)")
-            val = (str(email), str(pas), str(usr), 0, systemID)
+            sql = ("INSERT INTO account_data(email, password, username, total_planets, system_id, pfp, system_name) VALUES(?,?,?,?,?,?,?)")
+            val = (str(email), str(pas), str(usr), 0, systemID, pfp, "Default")
             cursor.execute(sql, val)
             db.commit()
             session["user"] = usr
             session["email"] = email
+            session["system_name"] = "Default"
             return redirect(url_for("login"))
         else:
             return render_template("signup.html")
@@ -165,19 +174,26 @@ def account():
         pas = request.form['pconfirm']
         username = request.form['username']
         system = request.form['system']
+        pfp = request.form['profilePicture']
         db = sqlite3.connect('stellar.db')
         cursor = db.cursor()
         cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
         result = cursor.fetchone()
         if str(result[1]) == str(pas):
-            if str(result[2]) != str(username):
+            print(username)
+            if str(username) != '' and str(result[2]) != str(username):
                 sql = ("UPDATE account_data SET username = ? WHERE email = ?")
                 val = (username, session["email"])
                 cursor.execute(sql, val)
                 db.commit()
-            if str(result[4]) != str(system):
+            if str(system) != '' and str(result[4]) != str(system):
                 sql = ("UPDATE account_data SET system_name = ? WHERE email = ?")
                 val = (system, session["email"])
+                cursor.execute(sql, val)
+                db.commit()
+            if str(pfp) != "IMAGE" and str(result[3]) != str(pfp):
+                sql = ("UPDATE account_data SET pfp = ? WHERE email = ?")
+                val = (pfp, session["email"])
                 cursor.execute(sql, val)
                 db.commit()
             cursor.close()
@@ -185,7 +201,13 @@ def account():
         return redirect(url_for("home"))
     else:
         if "email" in session:
-            return render_template("account.html", email=session["email"], username=session["user"])
+            db = sqlite3.connect('stellar.db')
+            cursor = db.cursor()
+            cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
+            result = cursor.fetchone()
+            cursor.close()
+            db.close()
+            return render_template("account.html", email=session["email"], username=session["user"], pfp=str(result[3]), system_name=str(result[4]))
         else:
             return redirect(url_for("home"))
 

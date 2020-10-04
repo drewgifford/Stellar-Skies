@@ -19,13 +19,13 @@
 
             </a>
             <div class="accountGroup">
-                <a class="newPlanet" href="/edit"> <!--New Planet link-->
+            {% if email%}
+                <a class="newPlanet" href="/planet"> <!--New Planet link-->
                     <p><i class="far fa-plus-square"></i> New Planet</p>
                 </a>
                 <a class="about" href="/about"> <!--About link-->
                     <p><i class="fas fa-question"></i> About</p>
                 </a>
-            {% if email%}
                 <a class="profile" href="/account"> <!--Profile page link-->
                     <p><i class="fas fa-user"></i> {{username}}</p>
                 </a>
@@ -33,6 +33,12 @@
                     <p><i class="fas fa-sign-out-alt"></i> Sign Out</p>
                 </a>
             {% else %}
+                <a class="newPlanet" href="/login"> <!--New Planet link-->
+                    <p><i class="far fa-plus-square"></i> New Planet</p>
+                </a>
+                <a class="about" href="/about"> <!--About link-->
+                    <p><i class="fas fa-question"></i> About</p>
+                </a>
                 <a class="logIn" href="/login" >  <!--Log in page link-->
                     <p><i class="fas fa-sign-in-alt"></i> Log In</p>
                 </a>

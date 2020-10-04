@@ -36,7 +36,7 @@
                 <input type="file" src="IMAGE" id="profilePictureImg" name="profilePictureImg" accept="image/*">
                 </div>
                 <div>
-                    <img id="profilePicturePreview" src="">
+                    <img id="profilePicturePreview" src="{{pfp}}">
                 </div>
                 <label class="center fileLabel" for="profilePictureImg">Upload Image</label>
             </div>
@@ -44,9 +44,9 @@
             <label for="lem">Email</label>
             <p><input type="text" id="email" name="email" readonly value="{{email}}"/></p>
             <label for="lem">Username</label>
-            <p><input type="text" id="username" name="username" /></p>
+            <p><input type="text" id="username" name="username" value="{{username}}"/></p>
             <label for="lpas">System Name</label>
-            <p><input type="text" id="system" name="system" /></p>
+            <p><input type="text" id="system" name="system" value="{{system_name}}"/></p>
 
             <p><input type="text" id="profilePicture" name="profilePicture" value="IMAGE"/></p>
             <label for="lpas">Confirm Password</label>
