@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="absoluteCenterContainer">
+    <div class="absoluteCenter">
+        <p class="bold title center">Sign Up</p>
+            <form action="#" method="POST" autocomplete="off">
+            <p>Email:</p>
+            <p><input type="text" name="em" /></p>
+            <p>Username:</p>
+            <p><input type="text" name="usr" /></p>
+            <p>Password:</p>
+            <p><input type="password" id="pass" name="pas" /></p>
+            <p>Confirm Password:</p>
+            <p><input type="password" name="pasc" id="confirmPass"/></p>
+            <p id="validate-status">Type in a password</p>
+            <p><input id="submit" type="submit" value="Submit" /></p>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#submit").css("display","none");
+        $("#confirmPass").on("keyup", function(){
+            if(!($("#pass").val()===$("#confirmPass").val())){
+                $("#validate-status").html("Passwords do not match");
+                $("#submit").css("display","none");
+            } else {
+                $("#validate-status").html("");
+                $("#submit").css("display","initial");
+            }
+        });
+
+    });
+
+
+
+
+</script>
+{% endblock %}

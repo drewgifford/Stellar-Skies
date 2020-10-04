@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Account{% endblock %}
+
+{% block content %}
+<div class="absoluteCenterContainer">
+    <div class="absoluteCenter">
+        <p class="bold title center">Account</p>
+        <form action="#" method="POST">
+            <label for="lem">Email</label>
+            <p><input type="text" id="email" name="email" readonly value="email@email.com"/></p>
+            <label for="lem">Username</label>
+            <p><input type="text" id="username" name="username" /></p>
+            <label for="lpas">System Name</label>
+            <p><input type="text" id="system" name="system" /></p>
+            <p><input type="submit" value="Update Account" /></p>
+        </form>
+    </div>
+</div>
+{% endblock %}
