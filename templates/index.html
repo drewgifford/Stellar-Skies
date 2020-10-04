@@ -97,7 +97,7 @@
                             <div class="popupPlanets">
                                 {% for presult in pdata %}
                                     {% if presult[19] == result[5] %}
-                                        <a class="popupPlanetContainer" href=""> <!-- Planet ID in href, i.e. /planet/planetid to go to the planet-->
+                                        <a class="popupPlanetContainer" href="/planet/{{presult[0]}}"> <!-- Planet ID in href, i.e. /planet/planetid to go to the planet-->
                                             <div class="planet" style="background-color: {{presult[7]}}; width: calc(20px + ({{presult[8]}}px / 5)); height: calc(20px + ({{presult[8]}}px / 5)); margin-top: calc(40px - ({{presult[8]}}px / 10)); margin-bottom: calc(40px - ({{presult[8]}}px / 10));"></div> <!-- Replace #ffffff with planet color -->
                                             <p class="planetName">{{presult[1]}}</p> <!-- Planet name -->
                                             <p class="planetDate">Created {{presult[4]}}</p> <!-- Planet creation date -->

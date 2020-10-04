@@ -29,6 +29,32 @@ def home():
 def planet():
     return render_template("planet.html")
 
+@app.route("/planet/<planet_id>/")
+def planet_view(planet_id):
+    print(planet_id)
+    db = sqlite3.connect('stellar.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM planet_data WHERE planetID = '{}'".format(planet_id))
+    result = cursor.fetchone()
+    planet = { "planetName" : result[1],
+               "planetDescription" : result[2],
+               "planetAuthor" : result[3],
+               "publishDate" : result[4],
+               "planetColor" : result[7],
+               "planetTerrainImg" : result[5],
+               "planetImg" : result[6],
+               "planetSize" : result[8],
+               "planetRoughness" : result[9],
+               "planetContour" : result[10],
+               "planetReflectiveness" : result[11],
+               "planetSpeed" : result[12],
+               "atmosphereColor" : result[13],
+               "atmosphereDepth" : result[14],
+               "atmosphereSpeed" : result[16],
+               "atmosphereAura" : result[17],
+               "atmosphereImg" : result[18]}
+    return render_template("viewplanet.html", planet=planet)
+
 @app.route("/planet/submit/", methods=["POST", "GET"])
 def planet_submit():
     if request.method == "POST":
