@@ -51,7 +51,7 @@ atmosphereDepth = 25;
 atmosphereOpacity = 50;
 atmosphereSpeed = 10;
 atmosphereAura = 50;
-atmosphereImg = "https://i.imgur.com/MUWqhvj.png";
+atmosphereImg = "/static/img/cloud_map.png";
 $(document).ready(function(){
     initSlider("#planetSize", planetSize);
     initSlider("#planetRoughness", planetRoughness);
