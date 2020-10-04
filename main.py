@@ -25,9 +25,13 @@ def home():
         else:
             return render_template("index.html", data=result, pdata=result1)
 
+@app.route("/about/")
+def about():
+    return render_template("about.html", email=session["email"], username=session["user"])
+
 @app.route("/planet/")
 def planet():
-    return render_template("planet.html")
+    return render_template("planet.html", email=session["email"], username=session["user"])
 
 @app.route("/planet/<planet_id>/")
 def planet_view(planet_id):
@@ -54,7 +58,7 @@ def planet_view(planet_id):
                "atmosphereAura" : result[17],
                "atmosphereImg" : result[18],
                "atmosphereOpacity" : result[15]}
-    return render_template("viewplanet.html", planet=planet)
+    return render_template("viewplanet.html", planet=planet, email=session["email"], username=session["user"])
 
 @app.route("/planet/submit/", methods=["POST", "GET"])
 def planet_submit():
@@ -158,12 +162,32 @@ def signup():
 @app.route("/account/", methods=["POST", "GET"])
 def account():
     if request.method == "POST":
-        return render_template("index.html")
+        pas = request.form['pconfirm']
+        username = request.form['username']
+        system = request.form['system']
+        db = sqlite3.connect('stellar.db')
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM account_data WHERE email = '{}'".format(session["email"]))
+        result = cursor.fetchone()
+        if str(result[1]) == str(pas):
+            if str(result[2]) != str(username):
+                sql = ("UPDATE account_data SET username = ? WHERE email = ?")
+                val = (username, session["email"])
+                cursor.execute(sql, val)
+                db.commit()
+            if str(result[4]) != str(system):
+                sql = ("UPDATE account_data SET system_name = ? WHERE email = ?")
+                val = (system, session["email"])
+                cursor.execute(sql, val)
+                db.commit()
+            cursor.close()
+            db.close()
+        return redirect(url_for("home"))
     else:
         if "email" in session:
             return render_template("account.html", email=session["email"], username=session["user"])
         else:
-            return render_template("index.html")
+            return redirect(url_for("home"))
 
 @app.route("/logout/")
 def logout():
