@@ -1,4 +1,16 @@
 $(document).ready(function(){
+    $('#planetDescription').on('keyup', function(){
+        $(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
+        var e = $("#planetDescription").val().length+"/500";
+        $("#planetDescriptionIndicator").html(e);
+      });
+
+
+      $('#planetDescription').on('keydown', function(){
+        $(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
+        var e = $("#planetDescription").val().length+"/500";
+        $("#planetDescriptionIndicator").html(e);
+      });
     var currentPanel = "mainOptions";
     $(".option").click(function(){
 
@@ -165,6 +177,7 @@ $(document).ready(function(){
         planetMesh.material.map = texture;
         planetMesh.material.needsUpdate = true;
     });
+
 
     
 

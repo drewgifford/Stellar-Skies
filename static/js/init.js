@@ -34,7 +34,7 @@ var
 
 if (jsonObj == null) {
     planetName = "My Planet";
-    planetDescription = "Description of your planet";
+    planetDescription = "";
     planetAuthor = "Toadally";
     publishDate = Date.now();
     planetColor = "#ffffff";

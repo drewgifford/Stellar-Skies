@@ -67,3 +67,6 @@ textarea {
     padding: 1em;
     padding-top: 100px;
 }
+textarea {
+    height: 400px;
+}
