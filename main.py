@@ -9,6 +9,10 @@ app.secret_key = "Testing"
 def home():
     return render_template("index.html")
 
+@app.route("/planet/")
+def planet():
+    return render_template("planet.html")
+
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":

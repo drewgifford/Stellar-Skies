@@ -174,7 +174,7 @@ function onWindowResize(){
         } else if (typeof console.clear !== 'undefined') {
             console.API = console;
         }
-        console.API.clear();
+        //console.API.clear();
         }
 
         //Render frames
