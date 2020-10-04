@@ -239,15 +239,14 @@
                     atmosphereSpeed: atmosphereSpeed,
                     atmosphereAura: atmosphereAura,
                     atmosphereImg: atmosphereImg
-                }
-                var json = JSON.parse(obj);
+                };
 
                 $.ajax({
                     type: "POST",
                     contentType: "application/json;charset=utf-8",
-                    url: "/your/flask/endpoint", //Put flask url endpoint here
+                    url: "/planet/submit/", //Put flask url endpoint here
                     traditional: "true",
-                    data: JSON.stringify(json),
+                    data: JSON.stringify(obj),
                     dataType: "json"
                 });
 

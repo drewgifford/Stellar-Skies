@@ -24,7 +24,7 @@
 
     <div class="account">
         {% if email%}
-            <a class="profile" href=""> <!--Profile page link-->
+            <a class="profile" href="/account"> <!--Profile page link-->
                 <p><i class="fas fa-user"></i> {{username}}</p>
             </a>
             <a class="logOut" href="/logout"> <!--Log out page link-->
@@ -50,51 +50,53 @@
 
         <div class="systemsList">
             {% for result in data %}
-            <div class="system">
-                <div class="systemInfo">
-                    <div class="systemProfile">
-                        <img class="systemProfilePicture" src="https://avatars0.githubusercontent.com/u/43815275?s=460&u=2753f461d6d9b4598dfbe8e7baf4125ced5e3979&v=4"> <!-- Profile picture -->
-                        <p class="systemProfileName">{{result[2]}}</p> <!-- Username -->
-                    </div>
-                    <div class="systemPlanets">
-                        <p class="systemName">{{result[4]}} <span class="systemPlanetCount">(2)</span></p> <!-- System name, planet count -->
-                        <div class="systemPlanetsBox">
-                            {% for presult in pdata %}
-                                {% if presult[19] == result[5] %}
-                                    <div class="planetContainer">
-                                    <div class="planet" style="background-color: {{presult[7]}}"></div> <!-- Replace #ffffff with planet color -->
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                <div class="popupContainer">
-                    <div class="popup">
-                        <div class="closePopup">
-                            <p>&times;</p>
-                        </div>
+                {% if result[6] > 0 %}
+                <div class="system">
+                    <div class="systemInfo">
                         <div class="systemProfile">
                             <img class="systemProfilePicture" src="https://avatars0.githubusercontent.com/u/43815275?s=460&u=2753f461d6d9b4598dfbe8e7baf4125ced5e3979&v=4"> <!-- Profile picture -->
                             <p class="systemProfileName">{{result[2]}}</p> <!-- Username -->
-                            
                         </div>
-                        <p class="systemName center">{{result[4]}} <span class="systemPlanetCount">(2)</span></p> <!-- System name, planet count -->
-            
-                        <div class="popupPlanets">
-                            {% for presult in pdata %}
-                                {% if presult[19] == result[5] %}
-                                    <a class="popupPlanetContainer" href=""> <!-- Planet ID in href, i.e. /planet/planetid to go to the planet-->
+                        <div class="systemPlanets">
+                            <p class="systemName">{{result[4]}} <span class="systemPlanetCount">({{result[6]}})</span></p> <!-- System name, planet count -->
+                            <div class="systemPlanetsBox">
+                                {% for presult in pdata %}
+                                    {% if presult[19] == result[5] %}
+                                        <div class="planetContainer">
                                         <div class="planet" style="background-color: {{presult[7]}}"></div> <!-- Replace #ffffff with planet color -->
-                                        <p class="planetName">{{presult[1]}}</p> <!-- Planet name -->
-                                        <p class="planetDate">Created {{presult[4]}}</p> <!-- Planet creation date -->
-                                    </a>
-                                {% endif %}
-                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popupContainer">
+                        <div class="popup">
+                            <div class="closePopup">
+                                <p>&times;</p>
+                            </div>
+                            <div class="systemProfile">
+                                <img class="systemProfilePicture" src="https://avatars0.githubusercontent.com/u/43815275?s=460&u=2753f461d6d9b4598dfbe8e7baf4125ced5e3979&v=4"> <!-- Profile picture -->
+                                <p class="systemProfileName">{{result[2]}}</p> <!-- Username -->
+                                
+                            </div>
+                            <p class="systemName center">{{result[4]}} <span class="systemPlanetCount">({{result[6]}})</span></p> <!-- System name, planet count -->
+                
+                            <div class="popupPlanets">
+                                {% for presult in pdata %}
+                                    {% if presult[19] == result[5] %}
+                                        <a class="popupPlanetContainer" href=""> <!-- Planet ID in href, i.e. /planet/planetid to go to the planet-->
+                                            <div class="planet" style="background-color: {{presult[7]}}"></div> <!-- Replace #ffffff with planet color -->
+                                            <p class="planetName">{{presult[1]}}</p> <!-- Planet name -->
+                                            <p class="planetDate">Created {{presult[4]}}</p> <!-- Planet creation date -->
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                {% endif %}
             {% endfor %}
         </div>
 

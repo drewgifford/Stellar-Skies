@@ -28,6 +28,37 @@ def home():
 def planet():
     return render_template("planet.html")
 
+@app.route("/planet/submit/", methods=["POST", "GET"])
+def planet_submit():
+    if request.method == "POST":
+        print(request.json)
+        planetName = request.json['planetName']
+        planetDescription = request.json['planetDescription']
+        planetAuthor = request.json['planetAuthor']
+        publishDate = request.json['publishDate']
+        planetColor = request.json['planetColor']
+        planetTerrainImg = request.json['planetTerrainImg']
+        planetImg = request.json['planetImg']
+        planetSize = request.json['planetSize']
+        planetRoughness = request.json['planetRoughness']
+        planetContour = request.json['planetContour']
+        planetReflectiveness = request.json['planetReflectiveness']
+        planetSpeed = request.json['planetSpeed']
+        atmosphereColor = request.json['atmosphereColor']
+        atmosphereDepth = request.json['atmosphereDepth']
+        atmosphereSpeed = request.json['atmosphereSpeed']
+        atmosphereAura = request.json['atmosphereAura']
+        atmosphereImg = request.json['atmosphereImg']
+        db = sqlite3.connect('stellar.db')
+        cursor = db.cursor()
+        sql = ("INSERT INTO planet_data(planetName, planetDescription, planetAuthor, publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+        val = (planetName, planetDescription, planetAuthor, publishDate, planetColor, planetTerrainImg, planetImg, planetSize, planetRoughness, planetContour, planetReflectiveness, planetSpeed, atmosphereColor, atmosphereDepth, atmosphereSpeed, atmosphereAura, atmosphereImg)
+        cursor.execute(sql, val)
+        db.commit()
+        cursor.close()
+        db.close()
+        return redirect(url_for("home"))
+
 @app.route("/login/", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
@@ -85,6 +116,16 @@ def signup():
         db.close()
     else:
         return render_template("signup.html")
+
+@app.route("/account/", methods=["POST", "GET"])
+def account():
+    if request.method == "POST":
+        return render_template("index.html")
+    else:
+        if "email" in session:
+            return render_template("account.html", email=session["email"], username=session["user"])
+        else:
+            return render_template("index.html")
 
 @app.route("/logout/")
 def logout():
