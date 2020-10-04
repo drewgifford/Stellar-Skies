@@ -71,6 +71,8 @@ if (jsonObj == null) {
     atmosphereAura = parseInt(jsonObj.atmosphereAura);
     atmosphereImg = jsonObj.atmosphereImg;
     atmosphereOpacity = parseInt(jsonObj.atmosphereOpacity);
+
+    document.title = "Stellar Skies - "+planetName;
 }
 
 $(document).ready(function(){
