@@ -5,15 +5,30 @@ app = Flask(__name__)
 app.secret_key = "Testing"
 
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def home():
-    return render_template("index.html")
+    db = sqlite3.connect('stellar.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM account_data")
+    result = cursor.fetchall()
+    cursor.execute("SELECT * FROM planet_data")
+    result1 = cursor.fetchall()
+    
+    cursor.close()
+    db.close()
+    if request.method == "POST":
+        return render_template("index.html", data=result, pdata=result1)
+    else:
+        if "email" in session:
+            return render_template("index.html", data=result, pdata=result1, email=session["email"], username=session["user"])
+        else:
+            return render_template("index.html", data=result, pdata=result1)
 
 @app.route("/planet/")
 def planet():
     return render_template("planet.html")
 
-@app.route("/login", methods=["POST", "GET"])
+@app.route("/login/", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
         em = request.form['lem']
@@ -28,13 +43,14 @@ def login():
             return redirect(url_for("login"))
         else:
             session["user"] = str(result[1])
-            return redirect(url_for("user"))
+            session["email"] = str(result[0])
+            return redirect(url_for("home"))
     else:
         if "user" in session:
-            return redirect(url_for("user"))
+            return redirect(url_for("home"))
         return render_template("login.html")
 
-@app.route("/user")
+@app.route("/user/")
 def user():
     if "user" in session:
         user = session["user"]
@@ -42,7 +58,7 @@ def user():
     else:
         return render_template("index.html")
 
-@app.route("/signup", methods=["POST", "GET"])
+@app.route("/signup/", methods=["POST", "GET"])
 def signup():
     if request.method == "POST":
         pas = request.form['pas']
@@ -70,9 +86,10 @@ def signup():
     else:
         return render_template("signup.html")
 
-@app.route("/logout")
+@app.route("/logout/")
 def logout():
     session.pop("user", None)
+    session.pop("email", None)
     return redirect(url_for("login"))
 
 if __name__ == "__main__":

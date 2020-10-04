@@ -23,21 +23,22 @@
     </div>
 
     <div class="account">
+        {% if email%}
+            <a class="profile" href=""> <!--Profile page link-->
+                <p><i class="fas fa-user"></i> {{username}}</p>
+            </a>
+            <a class="logOut" href="logout"> <!--Log out page link-->
+                <p><i class="fas fa-sign-out-alt"></i> Sign Out</p>
+            </a>
+        {% else %}
+            <a class="logIn" href="login" >  <!--Log in page link-->
+                <p><i class="fas fa-sign-in-alt"></i> Log In</p>
+            </a>
 
-        <a class="profile" href=""> <!--Profile page link-->
-            <p><i class="fas fa-user"></i> Toadally</p>
-        </a>
-
-        <a class="logIn" href="" >  <!--Log in page link-->
-            <p><i class="fas fa-sign-in-alt"></i> Log In</p>
-        </a>
-
-        <a class="logOut" href=""> <!--Log out page link-->
-            <p><i class="fas fa-sign-out-alt"></i> Sign Out</p>
-        </a>
-        <a class="register" href=""> <!--Register page link-->
-            <p><i class="fas fa-user-check"></i> Register</p>
-        </a>
+            <a class="register" href="signup"> <!--Register page link-->
+                <p><i class="fas fa-user-check"></i> Register</p>
+            </a>
+        {% endif %}
         <br>
         <p class="planetCount">1500 planets created</p> <!-- Total planets in system -->
 
@@ -48,19 +49,23 @@
     <div class="systemsContainer">
 
         <div class="systemsList">
-
+            {% for result in data %}
             <div class="system">
                 <div class="systemInfo">
                     <div class="systemProfile">
                         <img class="systemProfilePicture" src="https://avatars0.githubusercontent.com/u/43815275?s=460&u=2753f461d6d9b4598dfbe8e7baf4125ced5e3979&v=4"> <!-- Profile picture -->
-                        <p class="systemProfileName">JarDidi</p> <!-- Username -->
+                        <p class="systemProfileName">{{result[2]}}</p> <!-- Username -->
                     </div>
                     <div class="systemPlanets">
-                        <p class="systemName">TodeClan <span class="systemPlanetCount">(2)</span></p> <!-- System name, planet count -->
+                        <p class="systemName">{{result[4]}} <span class="systemPlanetCount">(2)</span></p> <!-- System name, planet count -->
                         <div class="systemPlanetsBox">
-                            <div class="planetContainer">
-                                <div class="planet" style="background-color: #ffffff"></div> <!-- Replace #ffffff with planet color -->
-                            </div>
+                            {% for presult in pdata %}
+                                {% if presult[19] == result[5] %}
+                                    <div class="planetContainer">
+                                    <div class="planet" style="background-color: {{presult[7]}}"></div> <!-- Replace #ffffff with planet color -->
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -71,22 +76,26 @@
                         </div>
                         <div class="systemProfile">
                             <img class="systemProfilePicture" src="https://avatars0.githubusercontent.com/u/43815275?s=460&u=2753f461d6d9b4598dfbe8e7baf4125ced5e3979&v=4"> <!-- Profile picture -->
-                            <p class="systemProfileName">JarDidi</p> <!-- Username -->
+                            <p class="systemProfileName">{{result[2]}}</p> <!-- Username -->
                             
                         </div>
-                        <p class="systemName center">TodeClan <span class="systemPlanetCount">(2)</span></p> <!-- System name, planet count -->
+                        <p class="systemName center">{{result[4]}} <span class="systemPlanetCount">(2)</span></p> <!-- System name, planet count -->
             
                         <div class="popupPlanets">
-            
-                            <a class="popupPlanetContainer" href=""> <!-- Planet ID in href, i.e. /planet/planetid to go to the planet-->
-                                <div class="planet" style="background-color: #ffffff"></div> <!-- Replace #ffffff with planet color -->
-                                <p class="planetName">Toad's Planet</p> <!-- Planet name -->
-                                <p class="planetDate">Created 10/3/2020</p> <!-- Planet creation date -->
-                            </a>
+                            {% for presult in pdata %}
+                                {% if presult[19] == result[5] %}
+                                    <a class="popupPlanetContainer" href=""> <!-- Planet ID in href, i.e. /planet/planetid to go to the planet-->
+                                        <div class="planet" style="background-color: {{presult[7]}}"></div> <!-- Replace #ffffff with planet color -->
+                                        <p class="planetName">{{presult[1]}}</p> <!-- Planet name -->
+                                        <p class="planetDate">Created {{presult[4]}}</p> <!-- Planet creation date -->
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
 
 
