@@ -60,20 +60,17 @@ if (jsonObj == null) {
     planetColor = jsonObj.planetColor;
     planetTerrainImg = jsonObj.planetTerrainImg;
     planetImg = jsonObj.planetImg;
-    planetSize = jsonObj.planetSize;
-    planetRoughness = jsonObj.planetRoughness;
-    planetContour = jsonObj.planetContour;
-    planetReflectiveness = jsonObj.planetReflectiveness;
-    planetSpeed = jsonObj.planetSpeed;
+    planetSize = parseInt(jsonObj.planetSize);
+    planetRoughness = parseInt(jsonObj.planetRoughness);
+    planetContour = parseInt(jsonObj.planetContour);
+    planetReflectiveness = parseInt(jsonObj.planetReflectiveness);
+    planetSpeed = parseInt(jsonObj.planetSpeed);
     atmosphereColor = jsonObj.atmosphereColor;
-    atmosphereDepth = jsonObj.atmosphereDepth;
-    atmosphereSpeed = jsonObj.atmosphereSpeed;
-    atmosphereAura = jsonObj.atmosphereAura;
+    atmosphereDepth = parseInt(jsonObj.atmosphereDepth);
+    atmosphereSpeed = parseInt(jsonObj.atmosphereSpeed);
+    atmosphereAura = parseInt(jsonObj.atmosphereAura);
     atmosphereImg = jsonObj.atmosphereImg;
-<<<<<<< HEAD
-    atmosphereOpacity = jsonObj.atmosphereOpacity;
-=======
->>>>>>> c649bb01b6995dc6012b3d89196695a8c1fe16f1
+    atmosphereOpacity = parseInt(jsonObj.atmosphereOpacity);
 }
 
 $(document).ready(function(){

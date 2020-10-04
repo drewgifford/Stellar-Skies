@@ -9,56 +9,79 @@
     <link rel="icon" href="/static/img/favicon.svg">
     <title>Stellar Skies - Edit Planet</title>
     <meta charset="UTF-8">
+    <style>
+        .popupContainer {
+            display: none;
+        }
+    </style>
+
 </head>
 
 
 
 <body>
 
-    <div class="navbar">
-        <a href="/">
-            <div class="logoGroup">
-
-                <img src="/static/img/logo.svg">
-                <p>Stellar Skies</p>
-            </div>
-
-        </a>
-        <div class="accountGroup">
-            <a class="newPlanet" href="/edit"> <!--New Planet link-->
-                <p><i class="far fa-plus-square"></i> New Planet</p>
-            </a>
-            <a class="about" href="/about"> <!--About link-->
-                <p><i class="fas fa-question"></i> About</p>
-            </a>
-        {% if email%}
-            <a class="profile" href="/account"> <!--Profile page link-->
-                <p><i class="fas fa-user"></i> {{username}}</p>
-            </a>
-            <a class="logOut" href="/logout"> <!--Log out page link-->
-                <p><i class="fas fa-sign-out-alt"></i> Sign Out</p>
-            </a>
-        {% else %}
-            <a class="logIn" href="/login" >  <!--Log in page link-->
-                <p><i class="fas fa-sign-in-alt"></i> Log In</p>
-            </a>
-
-            <a class="register" href="/signup"> <!--Register page link-->
-                <p><i class="fas fa-user-check"></i> Register</p>
-            </a>
-        {% endif %}
-        <br>
-        </div>
-
-    </div>
 
     <form spellcheck="false" autocomplete="off">
+        <div class="navbar">
+            <a href="/">
+                <div class="logoGroup">
+    
+                    <img src="/static/img/logo.svg">
+                    <p>Stellar Skies</p>
+                </div>
+    
+            </a>
+            <div class="accountGroup">
+                <a class="newPlanet" href="/edit"> <!--New Planet link-->
+                    <p><i class="far fa-plus-square"></i> New Planet</p>
+                </a>
+                <a class="about" href="/about"> <!--About link-->
+                    <p><i class="fas fa-question"></i> About</p>
+                </a>
+            {% if email%}
+                <a class="profile" href="/account"> <!--Profile page link-->
+                    <p><i class="fas fa-user"></i> {{username}}</p>
+                </a>
+                <a class="logOut" href="/logout"> <!--Log out page link-->
+                    <p><i class="fas fa-sign-out-alt"></i> Sign Out</p>
+                </a>
+            {% else %}
+                <a class="logIn" href="/login" >  <!--Log in page link-->
+                    <p><i class="fas fa-sign-in-alt"></i> Log In</p>
+                </a>
+    
+                <a class="register" href="/signup"> <!--Register page link-->
+                    <p><i class="fas fa-user-check"></i> Register</p>
+                </a>
+            {% endif %}
+            <br>
+            </div>
+    
+        </div>
     <div class="textInput">
         <p>Planet Name</p>
         <input id="planetName" type="text" name="planetName" maxlength=20 value="" placeholder="Click to edit">
         <p>Description</p>
         <textarea id="planetDescription" type="text" name="planetDescription" placeholder="Click to edit"></textarea>
 
+    </div>
+    <div class="popupContainer"> <!--Save popup?-->
+        <div class="popup">
+            <div class="closePopup">
+                <p>&times;</p>
+            </div>
+            <div class="popupCenter">
+                <div class="systemProfile">
+                    <p class="systemProfileName">Are you sure?</p><br>
+                </div>
+                <p class="center">You cannot edit your planet. All changes are final.</p>
+                <div class="buttonGroup">
+                    
+                    <a class="button red" id="confirmSave" href="/">Yes, I understand!</a> <a class="button closePopupButton">Go Back</a> 
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="sidebar">
@@ -83,23 +106,6 @@
             </div>
         </div>
 
-        <div class="popupContainer"> <!--Save popup?-->
-            <div class="popup">
-                <div class="closePopup">
-                    <p>&times;</p>
-                </div>
-                <div class="popupCenter">
-                    <div class="systemProfile">
-                        <p class="systemProfileName">Are you sure?</p><br>
-                    </div>
-                    <p class="center">You cannot edit your planet. All changes are final.</p>
-                    <div class="buttonGroup">
-                        
-                        <a class="button red" id="confirmSave" href="/">Yes, I understand!</a> <a class="button closePopupButton">Go Back</a> 
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="optionPane surfaceOptions" id="surfaceOptions">
 
@@ -257,6 +263,7 @@
     <script>
         $(document).ready(function(){
             $(".popupContainer").fadeOut(0);
+            $(".popupContainer").css("display",null);
             $("#confirmSave").click(function(){
                 var d = new Date();
                 var date = (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();

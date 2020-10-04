@@ -147,17 +147,21 @@ $(document).ready(function(){
     });
 
     initializeFileUpload("#atmosphereImg", function(val){
+        atmosphereImg = val;
         var texture = new THREE.TextureLoader().load(val);
         atmosphereMesh.material.map = texture;
     });
 
     initializeFileUpload("#planetTerrain", function(val){
+        planetTerrainImg = val;
         var texture = new THREE.TextureLoader().load(val);
         planetMesh.material.displacementMap = texture;
         planetMesh.material.bumpMap = texture;
     });
     initializeFileUpload("#planetImg", function(val){
         var texture = new THREE.TextureLoader().load(val);
+
+        planetImg = val;
         planetMesh.material.map = texture;
         planetMesh.material.needsUpdate = true;
     });
