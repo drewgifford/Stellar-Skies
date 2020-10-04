@@ -296,7 +296,8 @@ body {
     border-bottom: 1px solid white;
 }
 .systemProfilePicture {
-    max-width: 100px;
+    width: 100px;
+    height: 100px;
     display: inline-block;
     border-radius: 100%;
     margin-right: 1em
