@@ -46,12 +46,12 @@ function onWindowResize(){
         
         //Create Skybox
         var cubeMaterials = [
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( 'https://i.imgur.com/Yh8mbF1.png' ), side: THREE.DoubleSide }), //front
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( 'https://i.imgur.com/As8zp9y.png' ), side: THREE.DoubleSide }), //back
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( 'https://i.imgur.com/uMVt7dm.png' ), side: THREE.DoubleSide }), //up
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( 'https://i.imgur.com/P86GJDz.png' ), side: THREE.DoubleSide }), //down
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( 'https://i.imgur.com/J5VhovR.png' ), side: THREE.DoubleSide }), //right
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( 'https://i.imgur.com/7A5l4sm.png' ), side: THREE.DoubleSide }), //left
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( '/static/img/skybox/corona_ft.png' ), side: THREE.DoubleSide }), //front
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( '/static/img/skybox/corona_bk.png' ), side: THREE.DoubleSide }), //back
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( '/static/img/skybox/corona_up.png' ), side: THREE.DoubleSide }), //up
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( '/static/img/skybox/corona_dn.png' ), side: THREE.DoubleSide }), //down
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( '/static/img/skybox/corona_rt.png' ), side: THREE.DoubleSide }), //right
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load( '/static/img/skybox/corona_lf.png' ), side: THREE.DoubleSide }), //left
         ]
 
         //Create Skybox
