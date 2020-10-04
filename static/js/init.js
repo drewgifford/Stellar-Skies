@@ -54,22 +54,22 @@ if (jsonObj == null) {
     atmosphereImg = "/static/img/cloud_map.png";
 } else {
     planetName = jsonObj.planetName;
-    planetName = jsonObj.planetDescription;
-    planetName = jsonObj.planetAuthor;
-    planetName = jsonObj.publishDate;
-    planetName = jsonObj.planetColor;
-    planetName = jsonObj.planetTerrainImg;
-    planetName = jsonObj.planetImg;
-    planetName = jsonObj.planetSize;
-    planetName = jsonObj.planetRoughness;
-    planetName = jsonObj.planetContour;
-    planetName = jsonObj.planetReflectiveness;
-    planetName = jsonObj.planetSpeed;
-    planetName = jsonObj.atmosphereColor;
-    planetName = jsonObj.atmosphereDepth;
-    planetName = jsonObj.atmosphereSpeed;
-    planetName = jsonObj.atmosphereAura;
-    planetName = jsonObj.atmosphereImg;
+    planetDescription = jsonObj.planetDescription;
+    planetAuthor = jsonObj.planetAuthor;
+    publishDate = jsonObj.publishDate;
+    planetColor = jsonObj.planetColor;
+    planetTerrainImg = jsonObj.planetTerrainImg;
+    planetImg = jsonObj.planetImg;
+    planetSize = jsonObj.planetSize;
+    planetRoughness = jsonObj.planetRoughness;
+    planetContour = jsonObj.planetContour;
+    planetReflectiveness = jsonObj.planetReflectiveness;
+    planetSpeed = jsonObj.planetSpeed;
+    atmosphereColor = jsonObj.atmosphereColor;
+    atmosphereDepth = jsonObj.atmosphereDepth;
+    atmosphereSpeed = jsonObj.atmosphereSpeed;
+    atmosphereAura = jsonObj.atmosphereAura;
+    atmosphereImg = jsonObj.atmosphereImg;
 }
 
 $(document).ready(function(){
