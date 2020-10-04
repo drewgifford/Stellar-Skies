@@ -1,3 +1,6 @@
+html.planet {
+    overflow-y: hidden;
+}
 * {
     font-family: "Roboto Mono", monospace;
     color: white;
@@ -15,6 +18,7 @@ body {
     margin: 0;
 }
 
+
 canvas {
     width: 100vw;
     height: 100vh;
@@ -23,7 +27,9 @@ canvas {
     left: 0;
     z-index: 1;
 }
-
+.optionPane.mainOptions {
+    overflow-y: hidden;
+}
 .sidebar {
     overflow: hidden;
     max-width: 400px;
@@ -48,6 +54,9 @@ canvas {
 .sidebar .mainOption .optionImage {
     flex-basis: 100%;
 
+}
+.optionImage img {
+    max-height: 50px;
 }
 .mainOption:hover {
     background: rgba(255,255,255,0.1);
@@ -303,13 +312,21 @@ body {
     margin-right: 1em;
     font-weight: bold;
 }
-.account {
-    position: fixed;
+.account, .navbar {
+    position: absolute;
     top: 0;
     right: 0;
     padding: 1em;
 }
-.account > a {
+
+.navbar {
+    width: calc(100vw - 2em);
+    left: 0;
+    right: unset;
+    display: flex;
+    justify-content: space-between
+}
+.account > a, .navbar a {
     display: inline-block;
     padding: 1em;
     font-weight: bold;
@@ -317,8 +334,20 @@ body {
     box-shadow: 0px 0px inset white;
     transition: 50ms;
 }
-.account > a:hover {
+.navbar > a {
+    padding: 0em;
+}
+.account > a:hover, .navbar a:hover {
     box-shadow: 0px 2px inset white;
+}
+.logoGroup {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+.logoGroup img {
+    height: 48px;
+    margin-top: 2px;
 }
 .popupContainer {
     position: fixed;
@@ -330,6 +359,17 @@ body {
     width: 100vw;
     background: rgba(0,0,0,0.95);
 
+}
+.container {
+    width: 100vw;
+    position: absolute;
+    top: 100px;
+    left: 0;
+}
+
+.container .content {
+    width: 88%;
+    max-width: 1400px;
 }
 .popupPlanets {
     display: grid;
@@ -385,4 +425,30 @@ a:visited {
 }
 .closePopup:hover p {
     color: rgba(255,255,255,1);
+}
+a.button,button,input[type="submit"] {
+    padding: 10px;
+    border-radius: 1em;
+    background: white;
+    color: black;
+    font-weight: bold;
+    margin: 10px 10px 10px 0px;
+    cursor: pointer; 
+    box-shadow: 0px 0px 15px transparent;
+}
+a.button:hover,button:hover,input[type="submit"]:hover {
+    box-shadow: 0px 0px 15px rgba(255,255,255,0.75);
+}
+.absoluteCenter {
+    max-width: 400px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+
+}
+.absoluteCenterContainer {
+    height: 50vh;
 }

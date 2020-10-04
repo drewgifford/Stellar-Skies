@@ -1,0 +1,26 @@
+input[type="text"], input[type="password"] {
+    padding: 1em;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 1em;
+    outline: none;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    width: 100%;
+    font-weight: bold;
+}
+form {
+    max-width: 600px;
+    width: 100%;
+}
+.title {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+form input[type="submit"] {
+    width: 100px;
+}
+#validate-status {
+    color: #e74c3c;
+    font-weight: bold;
+}

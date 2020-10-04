@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="planet">
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;700&display=swap" rel="stylesheet"> 
     <link href="/static/css/index.css" rel="stylesheet">
+    <link href="/static/css/planet.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
     <link rel="icon" href="/static/img/favicon.svg">
     <title>Stellar Skies - Edit Planet</title>
@@ -13,8 +14,14 @@
 
 <body>
 
+    <form spellcheck="false" autocomplete="off">
+    <div class="textInput">
+        <p>Planet Name</p>
+        <input id="planetName" type="text" name="planetName" maxlength=20 value="" placeholder="Click to edit">
+        <p>Description</p>
+        <textarea id="planetDescription" type="text" name="planetDescription" placeholder="Click to edit"></textarea>
 
-    
+    </div>
 
     <div class="sidebar">
         <div class="optionPane visible mainOptions" id="mainOptions">
@@ -30,7 +37,32 @@
                     <p>Edit Atmosphere</p>
                 </div>
             </div>
+            <div class="option mainOption" id="save">
+                <div class="optionImage">
+                    <img src="/static/img/save.svg">
+                    <p>Save Planet</p>
+                </div>
+            </div>
         </div>
+
+        <div class="popupContainer"> <!--Save popup?-->
+            <div class="popup">
+                <div class="closePopup">
+                    <p>&times;</p>
+                </div>
+                <div class="popupCenter">
+                    <div class="systemProfile">
+                        <p class="systemProfileName">Are you sure?</p><br>
+                    </div>
+                    <p class="center">You cannot edit your planet. All changes are final.</p>
+                    <div class="buttonGroup">
+                        
+                        <a class="button red" id="confirmSave">Yes, I understand!</a> <a class="button closePopupButton">Go Back</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="optionPane surfaceOptions" id="surfaceOptions">
 
             <div class="back">
@@ -176,11 +208,59 @@
 
     </div>
 
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="/static/js/init.js"></script>
     
+    
+    <script>
+        $(document).ready(function(){
+            $(".popupContainer").fadeOut(0);
+            $("#confirmSave").click(function(){
 
+                var obj = {
+                    planetName: $("#planetName").val(),
+                    planetDescription: $("#planetDescription").val(),
+                    planetAuthor: planetAuthor,
+                    publishDate: Date.now(),
+                    planetColor: planetColor,
+                    planetTerrainImg: planetTerrainImg,
+                    planetImg: planetImg,
+                    planetSize: planetSize,
+                    planetRoughness: planetRoughness,
+                    planetContour: planetContour,
+                    planetReflectiveness: planetReflectiveness,
+                    planetSpeed: planetSpeed,
+                    atmosphereColor: atmosphereColor,
+                    atmosphereDepth: atmosphereDepth,
+                    atmosphereSpeed: atmosphereSpeed,
+                    atmosphereAura: atmosphereAura,
+                    atmosphereImg: atmosphereImg
+                }
+                var json = JSON.parse(obj);
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    url: "/your/flask/endpoint", //Put flask url endpoint here
+                    traditional: "true",
+                    data: JSON.stringify(json),
+                    dataType: "json"
+                });
+
+
+            });
+            $("#save").click(function(){
+                $(".popupContainer").fadeIn(150);
+            });
+            $(".closePopup").click(function(){
+                $(".popupContainer").fadeOut(150);
+            });
+            $(".closePopupButton").click(function(){
+                $(".popupContainer").fadeOut(150);
+            });
+        });
+    </script>
     <script src="https://threejs.org/build/three.min.js"></script>
 
     <script src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
@@ -197,6 +277,6 @@
     <script src="/static/js/index.js"></script>
     <script src="/static/js/ui-edit.js"></script>
 
-
+    </form>
 </body>
 </html>

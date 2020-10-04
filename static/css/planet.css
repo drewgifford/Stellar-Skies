@@ -1,0 +1,63 @@
+.popup {
+    height: 100vh;
+    position: relative;
+    margin-top: 0;
+}
+.popupContainer {
+    overflow: hidden;
+}
+.popupCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: 0;
+    right: 0;
+    transform: translate(-50%, -50%);
+}
+.closePopup {
+    margin-top: 5vh;
+}
+a.button.red {
+    background: #e74c3c;
+    color: black;
+}
+a.button.red:hover {
+    box-shadow: 0px 0px 15px rgba(231,76,60,0.75);
+}
+.buttonGroup {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    
+
+}
+input[type="text"],textarea {
+    background: none;
+    border: none;
+    outline: none;
+    padding:0;
+    margin:0;
+    margin-bottom: 10px;
+}
+textarea {
+    height: 75vh;
+    width: 100%;
+    max-width: 500px;
+    resize: none;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#planetName {
+    font-size: 54px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+#planetDescription {
+    font-size: 20px;
+}
+.textInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1em;
+}
